@@ -1,0 +1,23 @@
+<mat-toolbar class="header">
+    <i class="fa fa-apple logoSize" aria-hidden="true"></i>
+    <span class="applicationName">My App</span>
+    <span class="example-spacer"></span>
+    <span class="settings" [matMenuTriggerFor]="settingsMenu"><i class="fa fa-cog" aria-hidden="true"></i></span>
+    <span class="dateTime" [matMenuTriggerFor]="datePopover">{{currentDateTime}}</span>
+</mat-toolbar>
+
+<mat-menu #datePopover="matMenu">
+    <div class="commonPopover" (click)="$event.stopPropagation();">
+        <mat-calendar [(selected)]="selectedDateFromCalendar"></mat-calendar>
+    </div>
+</mat-menu>
+
+<mat-menu #settingsMenu="matMenu">
+    <div class="commonPopover" (click)="$event.stopPropagation();">
+        <div class="settingCard">
+            <span class="settingNameHeading">Display</span>
+            <mat-slider  (input)="onBrightnessSliderChange($event)" [(ngModel)]="defaultBrightness" tickInterval="100"
+            step="0.1" min="0.2" max="1" aria-label="%" class="brightnessSlider"></mat-slider>
+        </div>
+    </div>
+</mat-menu>
