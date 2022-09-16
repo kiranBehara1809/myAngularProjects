@@ -1,0 +1,40 @@
+<map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
+<div mat-dialog-content>
+    <form [formGroup]="reminderForm">
+        <div class="row w-100 pt-4">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" formControlName="title" autocomplete="off">
+                <mat-error>{{getFormErrorMessage(reminderForm,'title')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row w-100 pt-2">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Title" formControlName="description" autocomplete="off">
+                <mat-error>{{getFormErrorMessage(reminderForm,'description')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row w-100 pt-2">
+            <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="datepicker" formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row w-100 pt-2">
+            <mat-form-field>
+                <mat-label>Time</mat-label>
+                <input matInput type="time" formControlName="time">
+            </mat-form-field>
+        </div>
+    </form>
+    <ol>
+        <li>Please make sure notifications permission was granted</li>
+        <li>In order to notify you, please do not close the browser / applcation</li>
+    </ol>
+</div>
+<div mat-dialog-actions class="alignBottom">
+    <button mat-button mat-dialog-close class="fullButton">Save Reminder</button>
+</div>

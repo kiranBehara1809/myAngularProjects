@@ -1,6 +1,6 @@
 <mat-toolbar class="header">
     <i class="fa fa-apple logoSize" aria-hidden="true"></i>
-    <span class="applicationName">My App</span>
+    <span class="applicationName">My Projects</span>
     <span class="example-spacer"></span>
     <span class="settings" [matMenuTriggerFor]="settingsMenu"><i class="fa fa-cog" aria-hidden="true"></i></span>
     <span class="dateTime" [matMenuTriggerFor]="datePopover">{{currentDateTime}}</span>
@@ -10,21 +10,23 @@
     <div class="commonPopover" (click)="$event.stopPropagation();">
         <mat-calendar [(selected)]="selectedDateFromCalendar"></mat-calendar>
     </div>
+    <div class="row reminderButton">
+        <button mat-button mat-dialog-close class="fullButton" (click)="openReminderModal()">Add a Reminder</button>
+    </div>
 </mat-menu>
 
 <mat-menu #settingsMenu="matMenu">
     <div class="commonPopover" (click)="$event.stopPropagation();">
         <div class="settingCard">
             <span class="settingNameHeading">Display</span>
-            <input type="range" class="brightnessSlider" (input)="onBrightnessSliderChange($event)"
+            <input type="range" class="w-100" (input)="onBrightnessSliderChange($event)"
                 [(ngModel)]="defaultBrightness" name="vol" min="0" max="10">
         </div>
     </div>
 </mat-menu>
 
 <ng-template #welcomeNote>
-        <!-- <h2 mat-dialog-title>Welcome Note</h2> -->
-        <map-dialog-header [headerData]="welcomeNoteHeader"></map-dialog-header>
+        <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
         <div mat-dialog-content>
             <p>
                     Hi there..!, I am kiran Behara and I have 3 years of experience as an Angular Developer with 

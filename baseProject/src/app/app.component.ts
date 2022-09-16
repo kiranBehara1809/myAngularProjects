@@ -8,7 +8,6 @@ import { Utils } from './globals/Utils';
 export class AppComponent implements OnInit {
   title = 'baseProject';
   ngOnInit(): void {
-      const batteryPromise = window.navigator.connection
-      console.log(batteryPromise)
   }
+ 
 }

@@ -10,13 +10,17 @@ import { DatePipe } from '@angular/common';
 import { MapDialogHeaderComponent } from './commonComponents/map-dialog-header/map-dialog-header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FooterDockComponent } from './footer-dock/footer-dock.component';
+import { MapReminderComponent } from './commonComponents/map-reminder/map-reminder.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MapDialogHeaderComponent,
-    FooterDockComponent
+    FooterDockComponent,
+    MapReminderComponent
   ],
   imports: [
     BrowserModule,
@@ -24,8 +28,9 @@ import { FooterDockComponent } from './footer-dock/footer-dock.component';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [DatePipe],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [DatePipe, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

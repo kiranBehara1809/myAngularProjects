@@ -14,6 +14,8 @@ export class GlobalConstants {
         hasBackdrop:true,
         disableClose: true,
         height :'auto',
-        autoFocus : false
+        autoFocus : false,
+        maxHeight:'100vh',
+        maxWidth:'100vw'
     }
 }

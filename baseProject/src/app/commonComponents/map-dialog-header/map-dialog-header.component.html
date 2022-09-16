@@ -1,9 +1,9 @@
 <div class="dialogHeader" >
     <div class="row w-100">
-        <div class="col-4">
-            <i class="fa fa-circle matDialogIcons closeIcon" mat-dialog-close aria-hidden="true"></i>
-            <i class="fa fa-circle matDialogIcons minimizeIcon" aria-hidden="true"></i>
-            <i class="fa fa-circle matDialogIcons expandIcon" aria-hidden="true"></i>
+        <div class="col-4" >
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons closeIcon" mat-dialog-close aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons minimizeIcon" aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons expandIcon" (click)="maximizeMinimiseModal()" aria-hidden="true"></i>
         </div>
         <div class="col-8" >
                <span class="titleHeader ">{{headerData?.header}} </span>
