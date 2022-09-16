@@ -1,0 +1,28 @@
+.dialogHeader{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+}
+.matDialogIcons{
+    font-size: 12px;
+    margin: 0px 3px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.closeIcon{
+    color: var(--macOsRed) !important;
+    background-color: var(--macOsRed) !important;
+}
+.minimizeIcon{
+    color: var(--macOsYellow) !important;
+    background-color: var(--macOsYellow) !important;
+}
+.expandIcon{
+    color: var(--macOsGreen) !important;
+    background-color: var(--macOsGreen) !important;
+}
+.titleHeader{
+    color: var(--black);
+    font-weight: 500;
+    font-size: 17px;
+}

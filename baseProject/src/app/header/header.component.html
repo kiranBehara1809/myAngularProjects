@@ -16,8 +16,28 @@
     <div class="commonPopover" (click)="$event.stopPropagation();">
         <div class="settingCard">
             <span class="settingNameHeading">Display</span>
-            <mat-slider  (input)="onBrightnessSliderChange($event)" [(ngModel)]="defaultBrightness" tickInterval="100"
-            step="0.1" min="0.2" max="1" aria-label="%" class="brightnessSlider"></mat-slider>
+            <input type="range" class="brightnessSlider" (input)="onBrightnessSliderChange($event)"
+                [(ngModel)]="defaultBrightness" name="vol" min="0" max="10">
         </div>
     </div>
 </mat-menu>
+
+<ng-template #welcomeNote>
+        <!-- <h2 mat-dialog-title>Welcome Note</h2> -->
+        <map-dialog-header [headerData]="welcomeNoteHeader"></map-dialog-header>
+        <div mat-dialog-content>
+            <p>
+                    Hi there..!, I am kiran Behara and I have 3 years of experience as an Angular Developer with 
+                    a little bit java and Oracle knowledge, I like the MacOs interaface a lot, so I tried to 
+                    develop my personal portfolio similar to Macos.
+            </p>
+            <p>Tech Stack :</p>
+            <ol>
+                <li>Angular</li>
+                <li>Harper DB</li>
+            </ol>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close class="fullButton">continue</button>
+        </div>
+</ng-template>

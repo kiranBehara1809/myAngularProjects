@@ -7,11 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { DatePipe } from '@angular/common';
+import { MapDialogHeaderComponent } from './commonComponents/map-dialog-header/map-dialog-header.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FooterDockComponent } from './footer-dock/footer-dock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    MapDialogHeaderComponent,
+    FooterDockComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +25,7 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule
   ],
   providers: [DatePipe],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
