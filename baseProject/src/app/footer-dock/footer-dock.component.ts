@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'map-footer-dock',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class FooterDockComponent implements OnInit {
   footerDockList:string[] = ['calculator.png', 'settings.png', 'weather.png', 'calendar.png', 'reminders.png']
   hoverClass:string=''
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
+    // this.commonService.getWeatherData().subscribe(res=>{
+    //   console.log(res)
+    // })
   }
 
 }

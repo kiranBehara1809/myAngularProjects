@@ -10,8 +10,19 @@
     align-items: center;
     justify-content: center;
 }
+.hideCursor{
+    cursor: none !important;
+}
 .hoverDockApp{
     height: 40px !important;
     width: 40px !important;
     cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+.hoverDockApp:hover{
+    height: 80px !important;
+    width: 80px !important;
+    margin-top: -50px;
+    cursor: pointer;
+    
 }

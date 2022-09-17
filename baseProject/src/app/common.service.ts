@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -6,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class CommonService {
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
   getFormFieldErrorMessage(formGroup: FormGroup, formControlName: string): string {
     let errorMsg = ''
     if (formGroup === null || formGroup === undefined ||  formGroup.controls === undefined ||  formGroup.controls === null ||formControlName === undefined || formGroup.controls[formControlName] === undefined || formGroup.controls[formControlName] === null) {
@@ -40,6 +41,11 @@ export class CommonService {
       errorMsg = `Minimum value is (${requiredLength}).`
     }
     return errorMsg
+  }
+
+  getWeatherData(){
+    const API = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=da931ad4502df1d216edb321e2af6ecc`
+    return this.http.get(`${API}`)
   }
 
 }
