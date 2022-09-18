@@ -6,7 +6,7 @@ export class GlobalConstants {
         public static readonly MONTHS_LIST :string[] = ['January','February','March','April','May','June','July','August','September','October','November','December'];
         public static readonly MONTHS_SHORT_LIST :string[] = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         public static readonly DAY_LIST :string[]=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-        public static readonly DAY_SHORT_LIST :string[]=['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+        public static readonly DAY_SHORT_LIST :string[]=['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
     //MONTHS & DAYS
 
     public static readonly macintoshModal:MatDialogConfig = {

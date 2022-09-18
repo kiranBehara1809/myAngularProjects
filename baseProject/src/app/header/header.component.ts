@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
   constructor(private datePipe: DatePipe, private dialog: MatDialog) { }
   ngOnInit(): void {
-    let day = Utils.getDayShortName(new Date().getDay() - 1)
+    const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
+    let day = Utils.getDayShortName(dayNum)
     setInterval(() => {
       this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'MMM dd  hh:mm:ss')
     }, 1000)
