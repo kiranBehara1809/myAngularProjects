@@ -1,7 +1,14 @@
 <div class="dock">
     <div class="row">
-        <div class="col hideCursor" *ngFor="let app of footerDockList">
-            <img class="hoverDockApp"  src="../../assets/images/{{app}}" alt="app"/>
+        <div class="col hideCursor" *ngFor="let app of footerDockList" >
+            <img class="hoverDockApp"  src="../../assets/images/{{app}}" (click)="changeRoute(app)" alt="app"/>
         </div>
     </div>
 </div>
+
+
+<!-- [matMenuTriggerFor]="beforeMenu"   #rightClickMenu="matMenuTrigger"(contextmenu)="onRightClick(); -->
+<!-- <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu> -->

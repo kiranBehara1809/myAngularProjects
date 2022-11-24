@@ -6,6 +6,8 @@ import { GlobalConstants } from '../globals/GlobalConstants';
 import { MAT_DIALOG_HEADER } from '../globals/interfaces';
 import { Utils } from '../globals/Utils';
 import { MapReminderComponent } from '../commonComponents/map-reminder/map-reminder.component'
+import { GlobalService } from '../services/global.service';
+import { CommonService } from '../common.service';
 @Component({
   selector: 'map-header',
   templateUrl: './header.component.html',
@@ -18,7 +20,9 @@ export class HeaderComponent implements OnInit {
   defaultBrightness: any = 10
   matDialogHeader: MAT_DIALOG_HEADER | undefined
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
-  constructor(private datePipe: DatePipe, private dialog: MatDialog) { }
+
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService : GlobalService, private commonService :CommonService) { }
+
   ngOnInit(): void {
     const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
     let day = Utils.getDayShortName(dayNum)
@@ -30,6 +34,7 @@ export class HeaderComponent implements OnInit {
     }, 200);
     // this.getCurrentLocation()
   }
+
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(res => {
@@ -41,6 +46,7 @@ export class HeaderComponent implements OnInit {
     navigator.permissions.query({ name: 'geolocation' })
       .then(console.log)
   }
+
   onBrightnessSliderChange(event: any) {
     let brigntessVar = 0.2
     if (+event.target.value === 0 || +event.target.value === 1) {
@@ -56,11 +62,20 @@ export class HeaderComponent implements OnInit {
     let root = document.documentElement;
     root.style.setProperty('--brightnessVariable', `${brigntessVar}`);
   }
+
   openWelcomeNoteModal() {
     if (this.welcomeNote) {
+      this.globalService.get(`welcomeNote`).subscribe((res:any)=>{
+        const docId = document.getElementById('welcomeNote')
+        if(docId)
+          docId.innerHTML = res.note
+      })
       this.matDialogHeader = {
         hideIcons: true,
         header: "Welcome Note",
+      }
+      if(sessionStorage.getItem("WELCOME_MODAL_STATUS") === 'accepted'){
+        return
       }
       const welcomeModal = this.dialog.open(this.welcomeNote, {
         ...this._gc.macintoshModal,
@@ -68,26 +83,15 @@ export class HeaderComponent implements OnInit {
         width: '30vw',
       })
       welcomeModal.afterClosed().subscribe(res=>{
+        sessionStorage.setItem("WELCOME_MODAL_STATUS",'accepted')
         this.matDialogHeader = undefined
         if (!("Notification" in window)) {
           return
         }
-        let notificationPermission = Notification.permission
-          if(notificationPermission === "default" ){
-            this.requestAndShowPermission()
-          }
       })
     }
   }
-  requestAndShowPermission() {
-    Notification.requestPermission(permission => {
-      if(permission === "granted"){
-        let title : string ="Welcome To MAP"
-        let body:string ="This is a sample notification, thank you for accepting notifications"
-        let sampleNotification = new Notification(title, {body})
-      }
-    });
-  }
+ 
   openReminderModal(){
       const reminderModal = this.dialog.open(MapReminderComponent,{
         ...this._gc.macintoshModal,

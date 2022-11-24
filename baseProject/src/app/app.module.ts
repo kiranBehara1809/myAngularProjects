@@ -14,6 +14,8 @@ import { MapReminderComponent } from './commonComponents/map-reminder/map-remind
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
+import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
+import { RemindersListingComponent } from './commonComponents/reminders-listing/reminders-listing.component';
 
 
 
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     MapDialogHeaderComponent,
     FooterDockComponent,
-    MapReminderComponent
+    MapReminderComponent,
+    SnackbaComponent,
+    RemindersListingComponent
   ],
   imports: [
     BrowserModule,

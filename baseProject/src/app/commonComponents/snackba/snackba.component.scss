@@ -1,0 +1,13 @@
+.headerPartOne{
+    width: 80% !important;
+    font-size: 18px;
+}
+.headerPartTwo{
+    width: 20% !important;
+    text-align: center;
+}
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

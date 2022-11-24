@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
+import { GlobalConstants } from './globals/GlobalConstants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+  _gc = GlobalConstants
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
-  constructor(private http : HttpClient) { }
   getFormFieldErrorMessage(formGroup: FormGroup, formControlName: string): string {
     let errorMsg = ''
-    if (formGroup === null || formGroup === undefined ||  formGroup.controls === undefined ||  formGroup.controls === null ||formControlName === undefined || formGroup.controls[formControlName] === undefined || formGroup.controls[formControlName] === null) {
+    if (formGroup === null || formGroup === undefined || formGroup.controls === undefined || formGroup.controls === null || formControlName === undefined || formGroup.controls[formControlName] === undefined || formGroup.controls[formControlName] === null) {
       return ''
     }
     if (formGroup.controls[formControlName].hasError('required')) {
@@ -43,9 +47,50 @@ export class CommonService {
     return errorMsg
   }
 
-  getWeatherData(){
+  getWeatherData() {
     const API = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=da931ad4502df1d216edb321e2af6ecc`
     return this.http.get(`${API}`)
+  }
+
+  openSnackBar(message: string, className?: string, duration?: number, action?: string) {
+    this._snackBar.openFromComponent(SnackbaComponent, {
+      ...this._gc.SNACK_TOASTER_CONFIG,
+      duration: duration || this._gc.DEAFULT_SNACK_TOASTER_TIMER,
+      panelClass: className || this._gc.DEFAULT_SNACK_TOASTER_CLASS,
+      data: {
+        message: message || this._gc.NMD,
+        action: 'close',
+        className: className || this._gc.DEFAULT_SNACK_TOASTER_CLASS
+      }
+    })
+  }
+
+  showMessage(apiResponse: any): boolean {
+    let returnFlag: boolean = false
+    if (apiResponse.status === 500 || apiResponse.status === 404) {
+      this.openSnackBar(apiResponse.msg, this._gc.SNACK_TOASTER_ERROR)
+      returnFlag = true
+    }
+    if (apiResponse.status === 200) {
+      this.openSnackBar(apiResponse.msg, this._gc.SNACK_TOASTER_SUCCESS)
+      returnFlag = false
+    }
+    return returnFlag
+  }
+
+  requestAndShowPermission(title: string, body: string) {
+    const permission = Notification.permission
+    if (permission === "granted") {
+      let sampleNotification = new Notification(title, { body })
+    } else if (permission === 'denied') { 
+        this.openSnackBar('Notifications are denied, please enable them to proceed', this._gc.SNACK_TOASTER_INFO)
+     } else {
+      Notification.requestPermission(permission => {
+        if (permission === "granted") {
+          let sampleNotification = new Notification(title, { body })
+        }
+      });
+    }
   }
 
 }

@@ -1,0 +1,48 @@
+<!-- { "_id": "6376f26c5f9229a52e31506f", "title": "Sample Titlee", "description": "Sample Description", "date": "2022-11-18T02:47:49.242Z", "time": "09:20", "showNotification": false, "__v": 0 } -->
+<div class="commonHeading">
+    Reminders
+</div>
+<div class="leftSideList">
+    <div class="listedItems">
+        <div *ngFor="let item of remindersList" class="item {{item.class}}" (click)="onReminderClick(item)">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                {{item.title}}
+            </span>
+            <i class="{{item?.important ? 'fa fa-star' : ''}}" aria-hidden="true"></i>
+            <i class="fa {{item?.showNotification ? 'fa-bell' : 'fa-bell-slash'}}" aria-hidden="true"></i>
+        </div>
+        <button cdkFocusInitial   mat-button mat-dialog-close class="fullButton mt-4" (click)="openReminderModal()">Add New</button>
+    </div>
+    <div class="workArea" *ngIf="selectedObject">
+        <div class="row">
+            <div class=" col-4">
+                <!-- {{selectedObject | json}} -->
+                <img src="{{selectedObject.flag}}" height="40" width="60" onerror="this.onerror=null;this.src='assets/images/no-image.png';"/>
+            </div>
+        </div>
+        <div class="row details">
+            <div class=" col-3">
+                <span class="label">Title</span>
+                <span class="fieldValue">{{selectedObject.title}}</span>
+            </div>
+            <div class=" col-3">
+                <span class="label">Description</span>
+                <span class="fieldValue">{{selectedObject.description}}</span>
+            </div>
+            <div class=" col-3">
+                <span class="label">Date</span>
+                <span class="fieldValue">{{selectedObject.date | date:'dd/MM/yyyy hh:mm'}} {{selectedObject.time}}</span>
+            </div>
+            <div class=" col-3">
+                <span class="label">Show Notification</span>
+                <span class="fieldValue">{{selectedObject.showNotification}}</span>
+            </div>
+        </div>
+        <div class="actions">
+            <button cdkFocusInitial   mat-button mat-dialog-close class="normalButton " (click)="openReminderModal()">Edit Reminder</button>
+            <button cdkFocusInitial   mat-button mat-dialog-close class="normalButton " (click)="deleteReminder()">Delete</button>
+            <button cdkFocusInitial   mat-button mat-dialog-close class="normalButton " (click)="showSampleNotification()">Show Sample Notification</button>
+        </div>
+    </div>
+</div>

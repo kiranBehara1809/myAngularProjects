@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 
 @Component({
@@ -7,9 +9,10 @@ import { CommonService } from '../common.service';
   styleUrls: ['./footer-dock.component.scss']
 })
 export class FooterDockComponent implements OnInit {
-  footerDockList:string[] = ['calculator.png', 'settings.png', 'weather.png', 'calendar.png', 'reminders.png']
-  hoverClass:string=''
-  constructor(private commonService: CommonService) { }
+  footerDockList: string[] = ['calculator.png', 'settings.png', 'weather.png', 'calendar.png', 'reminders.png', 'covidDashboard.png', 'nasa.png']
+  hoverClass: string = ''
+  @ViewChild('rightClickMenu') rightClickMenu: MatMenuTrigger | undefined
+  constructor(private commonService: CommonService, private route: Router) { }
 
   ngOnInit(): void {
     // this.commonService.getWeatherData().subscribe(res=>{
@@ -17,4 +20,11 @@ export class FooterDockComponent implements OnInit {
     // })
   }
 
+  changeRoute(route: string) {
+    this.route.navigateByUrl(`pages/${route.split(".")[0]}`)
+  }
+  onRightClick() {
+    this.rightClickMenu?.openMenu()
+    return false;
+  }
 }

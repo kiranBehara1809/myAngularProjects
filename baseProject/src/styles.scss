@@ -2,11 +2,15 @@
 :root{
     --brightnessVariable : 1;
     --macOsBlue : #007ccf ;
+    --infoBgColor : rgb(214, 228, 238) ;
     --macOsGreen : #00CA4E;
+    --sucessBgColor : #d5e9dc;
     --macOsYellow : #FFBD44;
     --macOsRed : #FF605C;
+    --errorBgColor : #f7e6e6;
     --white: white;
     --black: black;
+    --gray : gray;
     --macOsOrange : #FF605C ;
 }
 html, body { height: 100%; }
@@ -25,8 +29,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   max-width: 100vw !important;
   transition: height 5.5s;
 }
+.mat-button.mat-button-disabled.mat-button-disabled{
+  background: var(--gray) !important;
+}
 .macintoshModal{
   border-radius: 15px !important;
+}
+.normalButton{
+  position: relative;
+  width: 25% !important;
+  height: 30px !important;
+  font-weight: normal !important;
+  border-radius: 5px !important;
+  color : var(--white) !important;
+  background-color: var(--macOsBlue)  !important;
+  line-height: 0 !important;
 }
 .mediumButton{
   position: relative;
@@ -55,3 +72,124 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 .mat-input-element{
   color: var(--black) !important;
 }
+.snackToaster_success {
+  border-left: 5px solid var(--sucessBgColor) !important;
+  background: var(--macOsGreen) !important;
+  color: var(--white) !important;
+  padding: 15px !important;
+  max-width: 350px !important;
+  overflow: hidden;
+}
+
+.snackToaster_error {
+  border-left: 5px solid var(--errorBgColor) !important;
+  background: var(--macOsRed) !important;
+  color: var(--white) !important;
+  padding: 15px !important;
+  max-width: 350px !important;
+  overflow: hidden;
+}
+
+.snackToaster_info {
+  border-left: 5px solid var(--infoBgColor) !important;
+  background: var(--macOsBlue) !important;
+  color: var(--white) !important;
+  padding: 15px !important;
+  max-width: 350px !important;
+  overflow: hidden;
+}
+
+.snackToaster_warn {
+  border-left: 5px solid var(--warnBgColor) !important;
+  background: var(--warnColor) !important;
+  color: var(--white) !important;
+  padding: 15px !important;
+  max-width: 350px !important;
+  overflow: hidden;
+}
+
+.mat-simple-snackbar-action {
+  color: var(--black);
+}
+.cursorPointer{
+  cursor: pointer !important;
+}
+
+.commonLayout{
+  padding: 50px 20px 20px 20px;
+  background : rgba(255,255,255, 0.75);
+  height: 80vh !important;
+}
+
+.commonHeading{
+  font-size: larger;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.leftSideList{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+}
+.listedItems{
+  width: 20%;
+  height: 70vh;
+  overflow: auto;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  .item{
+      cursor: pointer;
+      padding : 5px;
+      padding-left: 5px;
+      display: flex;
+      justify-content: space-between;
+  }
+  .item:hover{
+      background-color: var(--macOsBlue);
+      border-radius: 5px;
+      color: white;
+  }
+}
+.itemSelected{
+  background-color: var(--macOsBlue);
+  border-radius: 5px;
+  color: white;
+}
+.workArea{
+  width: 80%;
+  padding: 5px;
+}
+.details{
+  padding: 5px 0;
+  .col-3{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+}
+.label{
+  min-width: 250px;
+  font-weight: 600;
+}
+

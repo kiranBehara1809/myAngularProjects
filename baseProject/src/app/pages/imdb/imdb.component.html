@@ -1,0 +1,12 @@
+<div class="commonHeading">
+    IMDb
+</div>
+<div class="searchFilm">
+    <mat-form-field class="searchBox">
+        <mat-label>Search Film Name / Star</mat-label>
+        <input matInput type="text" [(ngModel)]="searchedValue">
+        <button *ngIf="searchedValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchedValue=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+</div>

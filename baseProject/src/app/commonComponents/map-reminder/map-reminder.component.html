@@ -11,7 +11,7 @@
         <div class="row w-100 pt-2">
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <input matInput placeholder="Title" formControlName="description" autocomplete="off">
+                <input matInput type="text" placeholder="Title" formControlName="description" autocomplete="off">
                 <mat-error>{{getFormErrorMessage(reminderForm,'description')}}</mat-error>
             </mat-form-field>
         </div>
@@ -36,5 +36,5 @@
     </ol>
 </div>
 <div mat-dialog-actions class="alignBottom">
-    <button mat-button mat-dialog-close class="fullButton">Save Reminder</button>
+    <button mat-button  [disabled]="!reminderForm.valid" class="fullButton" (click)="proceed()">Proceed</button>
 </div>

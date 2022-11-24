@@ -1,0 +1,28 @@
+<span matSnackBarLabel>
+    <p class="header">
+        <span class="headerPartOne" *ngIf="data.className === 'snackToaster_info'">
+            <i class="fa fa-info-circle  " aria-hidden="true"></i>
+            Info
+        </span>
+
+        <span class="headerPartOne" *ngIf="data.className === 'snackToaster_error'">
+            <i  class="fa fa-exclamation-triangle  " aria-hidden="true"></i>
+            Error
+        </span>
+
+        <span class="headerPartOne" *ngIf="data.className === 'snackToaster_success'">
+            <i class="fa fa-check-square  " aria-hidden="true"></i>
+            Info
+        </span>
+
+        <span class="headerPartOne" *ngIf="data.className === 'snackToaster_warn'">
+            <i class="fa fa-info-circle  " aria-hidden="true"></i>
+            Warn
+        </span>
+
+        <span class="headerPartTwo" matSnackBarActions>
+            <span mat-button matSnackBarAction class="cursorPointer" (click)="close()">X</span>
+        </span>
+    </p>
+    <span>{{data.message}}</span>
+</span>

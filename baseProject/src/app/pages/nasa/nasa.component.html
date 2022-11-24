@@ -1,0 +1,67 @@
+<div class="commonHeading">
+    NASA Dashboard
+</div>
+<div class="leftSideList">
+    <div class="listedItems">
+        <!-- <div *ngFor="let item of apiList" class="item {{item.class}}" (click)="onClickCountry(item)">
+            {{item?.name}}
+        </div> -->
+        <mat-accordion *ngFor="let item of apiList" class="example-headers-align" multi>
+            <mat-expansion-panel style="background: transparent !important;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{item?.name}}
+                    </mat-panel-title>
+                    <!-- <mat-panel-description>
+                  Type your name and age
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <div *ngFor="let innerItem of item.cameras" class="item {{innerItem.class}}"
+                    (click)="onClickCamera(innerItem)">
+                    {{innerItem?.name}}
+                </div>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+    <div class="workArea" *ngIf="selectedCamera">
+        <div class="images">
+            <div *ngFor="let nd of nasaData; let i = index">
+                <div class="flip-card {{flipModelIndex === i ? flipModel :'' }}"
+                    (click)="flipModelIndex = i;flipModel = flipModel ? '' : 'flipBro'">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="{{nd.img_src}}" height="200" width="200" />
+                        </div>
+                        <div class="flip-card-back">
+                            <p  >
+                                <span class="label">Captured On</span>
+                                <span class="fieldValue">{{nd?.earth_date}}</span>
+                            </p>
+                            <p  >
+                                <span class="label">Rover Name</span>
+                                <span class="fieldValue">{{nd?.rover?.name}}</span>
+                            </p>
+                            <p  >
+                                <span class="label">Launch Date</span>
+                                <span class="fieldValue">{{nd?.rover?.launch_date}}</span>
+                            </p>
+                            <p  >
+                                <span class="label">Landing Date</span>
+                                <span class="fieldValue">{{nd?.rover?.landing_date}}</span>
+                            </p>
+                            <p  >
+                                <span class="label">Status</span>
+                                <span class="fieldValue">{{nd?.rover?.status}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

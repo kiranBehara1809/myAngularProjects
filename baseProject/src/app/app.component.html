@@ -1,7 +1,12 @@
-<div class="content">
-  <map-header></map-header>
-  <router-outlet></router-outlet>
+<div class="contentMAP">
+  <map-header fxLayout="column"></map-header>
+
+  <div fxLayout="row" fxFlex="100" class="router">
+    <div class="content" fxLayout="column" fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
   <div class="dock">
-    <map-footer-dock></map-footer-dock>
+    <map-footer-dock fxLayout="column"></map-footer-dock>
   </div>
 </div>

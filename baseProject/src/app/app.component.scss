@@ -1,4 +1,4 @@
-.content{
+.contentMAP{
     height: 100vh;
     width: 100vw;
     max-width: 100vw;
@@ -18,4 +18,15 @@
   display: flex;
   justify-content: center;
   width: 100%;
+}
+.router{
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  right: 5px;
+  bottom: 70px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  padding: 20px;
+  overflow: auto;
 }
