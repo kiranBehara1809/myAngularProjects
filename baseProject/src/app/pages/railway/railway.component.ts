@@ -53,7 +53,7 @@ export class RailwayComponent implements OnInit {
     this.selectedObject = this.availableEndpoints.find(x => x.id === obj.id)
   }
   getPnrData(){
-    this.globalService.getPnrStatus(this.searchedValue).subscribe((res:any)=>{
+    this.globalService.getPnrStatus(this.searchForm.value.searchInput).subscribe((res:any)=>{
       if(res.error !== "" )
         return this.commonService.openSnackBar(res.error, this._gc.SNACK_TOASTER_ERROR)
       this.pnrData = res.data || undefined
