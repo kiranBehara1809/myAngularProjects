@@ -1,0 +1,50 @@
+<div class="commonHeading">
+    Settings
+</div>
+<div class="leftSideList">
+    <div class="listedItems">
+        <div *ngFor="let item of settingsList" class="item {{item.class}}" (click)="onClickSetting(item)">
+            {{item?.name}}
+        </div>
+    </div>
+    <div class="workArea" *ngIf="selectedObject">
+        <div class="details" *ngIf="selectedObject.id === 4">
+            <div class="detailItem" *ngFor="let wall of selectedObject.wallpaperList">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" (click)="changeWallpaper(wall.value)">
+                    <input type="radio" class="btn-check" name="btnradio" id="{{wall.value}}" autocomplete="off" >
+                    <label class="btn btn-outline-primary" for="btnradio1">{{wall.name}}</label>
+                  </div>
+            </div>
+        </div>
+        <div class="details" *ngIf="selectedObject.id === 3">
+            <form [formGroup]="sampleForm">
+
+                <div class="detailItem" >
+                    <mat-form-field class="searchBox">
+                        <mat-label>Enter Title</mat-label>
+                        <input matInput type="text" formControlName="title" autocomplete="off">
+                        <button *ngIf="sampleForm.controls['title'].value" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="sampleForm.controls['title'].setValue('')">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error>{{getErrorMessage(sampleForm,'title')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="detailItem" >
+                    <mat-form-field class="searchBox">
+                        <mat-label>Enter Description</mat-label>
+                        <input matInput type="text" formControlName="description" autocomplete="off">
+                        <button *ngIf="sampleForm.controls['description'].value" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="sampleForm.controls['description'].setValue('')">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error>{{getErrorMessage(sampleForm,'description')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="detailItem" >
+                    <button mat-button mat-dialog-close [disabled]="!sampleForm.valid" class="mediumButton" (click)="showNotification()">Sample Notification</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

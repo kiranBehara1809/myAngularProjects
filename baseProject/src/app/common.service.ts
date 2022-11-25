@@ -4,12 +4,14 @@ import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
 import { GlobalConstants } from './globals/GlobalConstants';
+import { REGEX } from './globals/REGEX';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   _gc = GlobalConstants
+  _regex = REGEX
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
   getFormFieldErrorMessage(formGroup: FormGroup, formControlName: string): string {
@@ -20,11 +22,11 @@ export class CommonService {
     if (formGroup.controls[formControlName].hasError('required')) {
       errorMsg = "This Field is mandatory"
     }
-    // if (formGroup.controls[formControlName].hasError('pattern')) {
-    //   const pattern = (formGroup.controls[formControlName].errors['pattern'].requiredPattern);
-    //   const regexObject = this.regex.ALL_REGEXP.find(regExp => (String(regExp.REG_EXP) === String(pattern)))
-    //   errorMsg = `Invalid - ${regexObject?.ERROR_MSG}`
-    // }
+    if (formGroup.controls[formControlName].hasError('pattern')) {
+      const pattern = (formGroup.controls[formControlName].errors?.['pattern'].requiredPattern);
+      const regexObject = this._regex.ALL_REGEXP.find(regExp => (String(regExp.REG_EXP) === String(pattern)))
+      errorMsg = `Invalid - ${regexObject?.ERROR_MSG}`
+    }
     if (formGroup.controls[formControlName].hasError('email')) {
       errorMsg = "Email is Invalid"
     }
@@ -83,7 +85,7 @@ export class CommonService {
     if (permission === "granted") {
       let sampleNotification = new Notification(title, { body })
     } else if (permission === 'denied') { 
-        this.openSnackBar('Notifications are denied, please enable them to proceed', this._gc.SNACK_TOASTER_INFO)
+        this.openSnackBar('Notifications are denied/blocked, please enable them to proceed', this._gc.SNACK_TOASTER_INFO)
      } else {
       Notification.requestPermission(permission => {
         if (permission === "granted") {

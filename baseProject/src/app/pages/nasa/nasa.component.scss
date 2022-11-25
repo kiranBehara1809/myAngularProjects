@@ -55,12 +55,13 @@
         padding: 5px 0;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-betweens;
+        justify-content: space-between;
         margin-bottom: 0;
     }
     .label{
         padding-right: 10px;
         font-weight: 500;
         min-width: 0 !important;
+        width: auto !important ;
     }
   }

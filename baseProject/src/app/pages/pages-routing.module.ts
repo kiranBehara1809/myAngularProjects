@@ -5,6 +5,7 @@ import { CovidComponent } from './covid/covid.component';
 import { ImdbComponent } from './imdb/imdb.component';
 import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path : 'railway',
     component : RailwayComponent
+  },
+  {
+    path : 'settings',
+    component : SettingsComponent
   }
 ];
 

@@ -77,10 +77,12 @@ export class HeaderComponent implements OnInit {
       if(sessionStorage.getItem("WELCOME_MODAL_STATUS") === 'accepted'){
         return
       }
+      let mobile = window.matchMedia("(max-width: 600px)")
+      let tablet = window.matchMedia("(max-width: 900px)")
       const welcomeModal = this.dialog.open(this.welcomeNote, {
         ...this._gc.macintoshModal,
         id: 'welcomeNoteModal',
-        width: '30vw',
+        width: mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '30vw'),
       })
       welcomeModal.afterClosed().subscribe(res=>{
         sessionStorage.setItem("WELCOME_MODAL_STATUS",'accepted')
@@ -93,12 +95,14 @@ export class HeaderComponent implements OnInit {
   }
  
   openReminderModal(){
+    let mobile = window.matchMedia("(max-width: 600px)")
+      let tablet = window.matchMedia("(max-width: 900px)")
       const reminderModal = this.dialog.open(MapReminderComponent,{
         ...this._gc.macintoshModal,
         position : {top :'top',right : 'right'},
-        width : '30vw',
+        width : mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '30vw'),
         height :'100vh',
-        maxWidth : '50vw',
+        maxWidth : mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '50vw'),
         id :'reminderModal'
       })
   }

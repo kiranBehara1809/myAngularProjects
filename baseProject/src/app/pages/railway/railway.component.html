@@ -8,16 +8,19 @@
         </div>
     </div>
     <div class="workArea" *ngIf="selectedObject">
-        <!-- {{selectedObject | json}} -->
         <div class="searchContainer" *ngIf="selectedObject.id === 1">
-            <mat-form-field class="searchBox">
-                <mat-label>Enter PNR Number Here</mat-label>
-                <input matInput type="text" [(ngModel)]="searchedValue" pattern="^[0-9]*$" [maxlength]="10">
-                <button *ngIf="searchedValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchedValue=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-            <button mat-button mat-dialog-close class="normalButton" (click)="getPnrData()">Search</button>
+            <form [formGroup]="searchForm">
+                <mat-form-field class="searchBox">
+                    <mat-label>Enter PNR Number Here</mat-label>
+                    <input matInput type="text" formControlName="searchInput" autocomplete="off">
+                    <button *ngIf="searchForm.controls['searchInput'].value" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="searchForm.controls['searchInput'].setValue('')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error>{{getErrorMessage(searchForm,'searchInput')}}</mat-error>
+                </mat-form-field>
+            </form>
+            <button mat-button mat-dialog-close class="normalButton" [disabled]="!searchForm.valid" (click)="getPnrData()">Search</button>
         </div>
         <div class="" *ngIf="pnrData">
             <div class="fromTo row">
@@ -87,12 +90,12 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <p *ngFor="let pass of pnrData?.passengerInfo">
-                            
-                                <span class="label">Current berth No</span>
-                                <span class="fieldValue">{{pass?.currentBerthNo}}</span>
-                                <span style="padding: 0px 5px ;">&nbsp;</span>
-                                <span class="label">Current Coach</span>
-                                <span class="fieldValue">{{pass?.currentCoach}}</span>
+
+                            <span class="label">Current berth No</span>
+                            <span class="fieldValue">{{pass?.currentBerthNo}}</span>
+                            <span style="padding: 0px 5px ;">&nbsp;</span>
+                            <span class="label">Current Coach</span>
+                            <span class="fieldValue">{{pass?.currentCoach}}</span>
                         </p>
                     </mat-expansion-panel>
                 </mat-accordion>

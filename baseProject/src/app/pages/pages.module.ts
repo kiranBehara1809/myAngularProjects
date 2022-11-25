@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RailwayComponent } from './railway/railway.component';
     ImdbComponent,
     CalendarComponent,
     NasaComponent,
-    RailwayComponent
+    RailwayComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
