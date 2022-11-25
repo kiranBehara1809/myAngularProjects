@@ -39,7 +39,6 @@ export class CovidComponent implements OnInit {
     })
   }
   onClickCountry(item:any){
-    console.log(item)
     this.countriesCovidData = this.countriesCovidData?.map((c:any) =>{
       return {
         ...c,

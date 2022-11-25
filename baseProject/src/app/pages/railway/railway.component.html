@@ -1,0 +1,131 @@
+<div class="commonHeading">
+    Indian Railways
+</div>
+<div class="leftSideList">
+    <div class="listedItems">
+        <div *ngFor="let item of availableEndpoints" class="item {{item.class}}" (click)="onSelectEndPoint(item)">
+            {{item?.name}}
+        </div>
+    </div>
+    <div class="workArea" *ngIf="selectedObject">
+        <!-- {{selectedObject | json}} -->
+        <div class="searchContainer" *ngIf="selectedObject.id === 1">
+            <mat-form-field class="searchBox">
+                <mat-label>Enter PNR Number Here</mat-label>
+                <input matInput type="text" [(ngModel)]="searchedValue" pattern="^[0-9]*$" [maxlength]="10">
+                <button *ngIf="searchedValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchedValue=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-button mat-dialog-close class="normalButton" (click)="getPnrData()">Search</button>
+        </div>
+        <div class="" *ngIf="pnrData">
+            <div class="fromTo row">
+                <mat-accordion class="example-headers-align col">
+                    <mat-expansion-panel style="background: transparent !important;">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{pnrData?.boardingInfo?.stationName}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                From
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>
+                            <span class="label">Arrival</span>
+                            <span class="fieldValue">{{pnrData?.boardingInfo?.arrivalTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Departure</span>
+                            <span class="fieldValue">{{pnrData?.boardingInfo?.departureTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Halt Time</span>
+                            <span class="fieldValue">{{pnrData?.boardingInfo?.haltTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Platform</span>
+                            <span class="fieldValue">{{pnrData?.boardingInfo?.platform}}</span>
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion class="example-headers-align col">
+                    <mat-expansion-panel style="background: transparent !important;">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{pnrData?.destinationInfo?.stationName}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                To
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>
+                            <span class="label">Arrival</span>
+                            <span class="fieldValue">{{pnrData?.destinationInfo?.arrivalTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Departure</span>
+                            <span class="fieldValue">{{pnrData?.destinationInfo?.departureTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Halt Time</span>
+                            <span class="fieldValue">{{pnrData?.destinationInfo?.haltTime}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Platform</span>
+                            <span class="fieldValue">{{pnrData?.destinationInfo?.platform}}</span>
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="fromTo row">
+                <mat-accordion class="example-headers-align col">
+                    <mat-expansion-panel style="background: transparent !important;">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Passenger Info ( {{pnrData?.passengerInfo?.length || 0}} passengers )
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p *ngFor="let pass of pnrData?.passengerInfo">
+                            
+                                <span class="label">Current berth No</span>
+                                <span class="fieldValue">{{pass?.currentBerthNo}}</span>
+                                <span style="padding: 0px 5px ;">&nbsp;</span>
+                                <span class="label">Current Coach</span>
+                                <span class="fieldValue">{{pass?.currentCoach}}</span>
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion class="example-headers-align col">
+                    <mat-expansion-panel style="background: transparent !important;">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Train Info
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            <span class="label">Boarding</span>
+                            <span class="fieldValue">{{pnrData?.trainInfo?.boarding}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Destination</span>
+                            <span class="fieldValue">{{pnrData?.trainInfo?.destination}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Train Name</span>
+                            <span class="fieldValue">{{pnrData?.trainInfo?.name}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Train No</span>
+                            <span class="fieldValue">{{pnrData?.trainInfo?.trainNo}}</span>
+                        </p>
+                        <p>
+                            <span class="label">Date</span>
+                            <span class="fieldValue">{{pnrData?.trainInfo?.dt}}</span>
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>

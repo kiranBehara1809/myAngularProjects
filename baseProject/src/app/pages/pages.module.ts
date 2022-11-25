@@ -7,6 +7,7 @@ import { ImdbComponent } from './imdb/imdb.component';
 import { MaterialModule } from '../material/material.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NasaComponent } from './nasa/nasa.component';
+import { RailwayComponent } from './railway/railway.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { NasaComponent } from './nasa/nasa.component';
     CovidComponent,
     ImdbComponent,
     CalendarComponent,
-    NasaComponent
+    NasaComponent,
+    RailwayComponent
   ],
   imports: [
     CommonModule,

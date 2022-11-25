@@ -4,6 +4,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CovidComponent } from './covid/covid.component';
 import { ImdbComponent } from './imdb/imdb.component';
 import { NasaComponent } from './nasa/nasa.component';
+import { RailwayComponent } from './railway/railway.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path : 'nasa',
     component : NasaComponent
+  },
+  {
+    path : 'railway',
+    component : RailwayComponent
   }
 ];
 
