@@ -21,7 +21,7 @@ export class MapReminderComponent implements OnInit {
     id: 'reminderModal'
   }
   reminderForm: FormGroup
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private commonService: CommonService, private globalService: GlobalService, private dialogRef: MatDialogRef<MapReminderComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any=null, private fb: FormBuilder, private commonService: CommonService, private globalService: GlobalService, private dialogRef: MatDialogRef<MapReminderComponent>) {
     this.reminderForm = this.fb.group({
       title: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(25)])),
       description: new FormControl(null, Validators.compose([Validators.maxLength(200)])),
@@ -32,6 +32,7 @@ export class MapReminderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.data)
     if (this.data) {
       this.reminderForm.patchValue({
         title: this.data.title,
@@ -54,7 +55,7 @@ export class MapReminderComponent implements OnInit {
     }
   }
   saveReminder() {
-    this.globalService.post('reminders', this.reminderForm.value).subscribe(res => {
+    this.globalService.post('reminders', {...this.reminderForm.value, __v : 0}).subscribe(res => {
       const flag = this.commonService.showMessage(res)
       if (flag) return
       this.dialogRef.close(true)

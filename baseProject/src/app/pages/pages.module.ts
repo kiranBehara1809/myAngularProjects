@@ -9,6 +9,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
 import { SettingsComponent } from './settings/settings.component';
+import { WeatherComponent } from './weather/weather.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SettingsComponent } from './settings/settings.component';
     CalendarComponent,
     NasaComponent,
     RailwayComponent,
-    SettingsComponent
+    SettingsComponent,
+    WeatherComponent
   ],
   imports: [
     CommonModule,

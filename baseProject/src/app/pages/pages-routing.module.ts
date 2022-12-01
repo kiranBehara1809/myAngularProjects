@@ -6,6 +6,7 @@ import { ImdbComponent } from './imdb/imdb.component';
 import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
 import { SettingsComponent } from './settings/settings.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path : 'settings',
     component : SettingsComponent
+  },
+  {
+    path : 'weather',
+    component : WeatherComponent
   }
 ];
 

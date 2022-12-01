@@ -12,7 +12,7 @@ import { MapReminderComponent } from '../map-reminder/map-reminder.component';
 })
 export class RemindersListingComponent implements OnInit {
   remindersList: any = []
-  selectedObject: any;
+  selectedObject: any=null;
   _gc = GlobalConstants;
   constructor(private globalService: GlobalService, private dialog: MatDialog, private commonService:CommonService) { }
 
@@ -43,9 +43,9 @@ export class RemindersListingComponent implements OnInit {
       height: '100vh',
       maxWidth: '50vw',
       id: 'reminderModal',
-      data : {
+      data : this.selectedObject ? {
         ...this.selectedObject
-      }
+      } : null
     })
     reminderModal.afterClosed().subscribe(res => {
       if (res){

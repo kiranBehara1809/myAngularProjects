@@ -54,4 +54,8 @@ export class GlobalService {
       headers: headers
     })
   }
+  getWeatherInfo(cityName:string){
+    // return this.http.get(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=da931ad4502df1d216edb321e2af6ecc`)
+    return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=da931ad4502df1d216edb321e2af6ecc&units=metric`)
+  }
 }

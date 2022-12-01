@@ -1,0 +1,24 @@
+<div class="commonHeading">
+    Weather
+</div>
+<div class="leftSideList">
+    <div class="listedItems">
+        <form [formGroup]="searchForm">
+                <mat-form-field class="searchBox">
+                    <mat-label>Enter City Here</mat-label>
+                    <input matInput type="text" formControlName="searchInput" autocomplete="off" spellcheck="true">
+                    <button *ngIf="searchForm.controls['searchInput'].value" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="searchForm.controls['searchInput'].setValue('')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error>{{getErrorMessage(searchForm,'searchInput')}}</mat-error>
+                </mat-form-field>
+            </form>
+            <button mat-button mat-dialog-close class="normalButton" [disabled]="!searchForm.valid" (click)="getWeatherData()">Search</button>
+    </div>
+    
+</div> 
+
+<div class="workArea" *ngIf="weatherObject">
+    
+</div>
