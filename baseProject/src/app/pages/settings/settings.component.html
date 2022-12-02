@@ -46,5 +46,8 @@
                 </div>
             </form>
         </div>
+        <div class="details" *ngIf="selectedObject.id === 5">
+           <input type="color" (input)="onChangeColor()" [(ngModel)]="selectedColor"/>  
+        </div>
     </div>
 </div>

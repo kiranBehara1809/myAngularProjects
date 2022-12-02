@@ -10,6 +10,9 @@ import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WeatherComponent } from './weather/weather.component';
+import { KanbanloginComponent } from './kanbanlogin/kanbanlogin.component';
+import { KanbanComponent } from './kanban/kanban.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -20,12 +23,15 @@ import { WeatherComponent } from './weather/weather.component';
     NasaComponent,
     RailwayComponent,
     SettingsComponent,
-    WeatherComponent
+    WeatherComponent,
+    KanbanloginComponent,
+    KanbanComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

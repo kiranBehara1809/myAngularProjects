@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatSlider, MatSliderChange } from '@angular/material/slider';
 import { GlobalConstants } from '../globals/GlobalConstants';
 import { MAT_DIALOG_HEADER } from '../globals/interfaces';
 import { Utils } from '../globals/Utils';
@@ -47,17 +47,17 @@ export class HeaderComponent implements OnInit {
       .then(console.log)
   }
 
-  onBrightnessSliderChange(event: any) {
+  onBrightnessSliderChange(event: MatSliderChange) {
     let brigntessVar = 0.2
-    if (+event.target.value === 0 || +event.target.value === 1) {
+    if (event.value === 0 || event.value === 1) {
       this.defaultBrightness = 0.2
       brigntessVar = 0.2
-    } else if (+event.target.value === 10) {
+    } else if (event.value === 10) {
       this.defaultBrightness = 10
       brigntessVar = 1
     } else {
-      brigntessVar = +("0." + event.target.value)
-      this.defaultBrightness = event.target.value
+      brigntessVar = +("0." + event.value)
+      this.defaultBrightness = event.value
     }
     let root = document.documentElement;
     root.style.setProperty('--brightnessVariable', `${brigntessVar}`);

@@ -10,6 +10,7 @@ import { CommonService } from 'src/app/common.service';
 export class SettingsComponent implements OnInit {
   selectedObject:any=null;
   sampleForm:FormGroup;
+  selectedColor:any = '#007ccf';
   settingsList = [
     // {
     //   id: 1,
@@ -41,8 +42,17 @@ export class SettingsComponent implements OnInit {
       {value : 'wallpaper8' , name : 'Pure'},
     ]
     },
+    {
+      id: 5,
+      name: 'Color Scheme',
+      class: ''
+    },
   ]
   constructor(private commonService:CommonService, private fb:FormBuilder) { 
+    const sessionColor = sessionStorage.getItem("MATERIAL_COMPONENT_COLOR")
+    if(sessionColor != null && sessionColor != undefined ){
+      this.selectedColor = sessionColor
+    }
     this.sampleForm = this.fb.group({
       title : new FormControl('',Validators.compose([Validators.required, Validators.maxLength(12)])),
       description : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)]))
@@ -50,6 +60,11 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let mobile = window.matchMedia("(max-width: 600px)");
+    let tablet = window.matchMedia("(max-width: 900px)");
+    if(mobile.matches || tablet.matches){
+     this.settingsList = this.settingsList.filter(x => x.id != 3)
+    }
   }
   onClickSetting(item:any){
     this.selectedObject = null;
@@ -75,5 +90,10 @@ export class SettingsComponent implements OnInit {
   }
   getErrorMessage(fg:FormGroup, fc:string){
     return this.commonService.getFormFieldErrorMessage(fg,fc)
+  }
+  onChangeColor(){
+      let root = document.documentElement;
+      root.style.setProperty('--materialComponentColor', `${this.selectedColor}`)
+      sessionStorage.setItem("MATERIAL_COMPONENT_COLOR", `${this.selectedColor}`)
   }
 }

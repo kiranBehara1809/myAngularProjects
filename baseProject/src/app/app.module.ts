@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { DatePipe } from '@angular/common';
-import { MapDialogHeaderComponent } from './commonComponents/map-dialog-header/map-dialog-header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FooterDockComponent } from './footer-dock/footer-dock.component';
 import { MapReminderComponent } from './commonComponents/map-reminder/map-reminder.component';
@@ -16,6 +15,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
 import { RemindersListingComponent } from './commonComponents/reminders-listing/reminders-listing.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -23,7 +23,6 @@ import { RemindersListingComponent } from './commonComponents/reminders-listing/
   declarations: [
     AppComponent,
     HeaderComponent,
-    MapDialogHeaderComponent,
     FooterDockComponent,
     MapReminderComponent,
     SnackbaComponent,
@@ -34,6 +33,7 @@ import { RemindersListingComponent } from './commonComponents/reminders-listing/
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    SharedModule,
     BrowserAnimationsModule
   ],
   providers: [DatePipe, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },

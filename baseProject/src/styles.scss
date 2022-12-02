@@ -12,7 +12,8 @@
     --black: black;
     --gray : gray;
     --macOsOrange : #FF605C ;
-    --url : url('../assets/images/wallpaper1.jpg')
+    --url : url('../assets/images/wallpaper1.jpg');
+    --materialComponentColor : #007ccf;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: black; }
@@ -36,6 +37,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 .macintoshModal{
   border-radius: 15px !important;
 }
+.noWidthButton{
+  position: relative;
+  width: auto !important;
+  height: 30px !important;
+  font-weight: normal !important;
+  border-radius: 5px !important;
+  color : var(--white) !important;
+  background-color: var(--materialComponentColor)  !important;
+  line-height: 0 !important;
+}
 .normalButton{
   position: relative;
   width: 25% !important;
@@ -43,7 +54,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   font-weight: normal !important;
   border-radius: 5px !important;
   color : var(--white) !important;
-  background-color: var(--macOsBlue)  !important;
+  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .mediumButton{
@@ -53,7 +64,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   font-weight: normal !important;
   border-radius: 5px !important;
   color : var(--white) !important;
-  background-color: var(--macOsBlue)  !important;
+  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .fullButton{
@@ -63,7 +74,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   font-weight: normal !important;
   border-radius: 5px !important;
   color : var(--white) !important;
-  background-color: var(--macOsBlue)  !important;
+  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-label{
@@ -171,13 +182,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
       justify-content: space-between;
   }
   .item:hover{
-      background-color: var(--macOsBlue);
+      background-color: var(--materialComponentColor);
       border-radius: 5px;
       color: white;
   }
 }
 .itemSelected{
-  background-color: var(--macOsBlue);
+  background-color: var(--materialComponentColor);
   border-radius: 5px;
   color: white;
 }
@@ -209,3 +220,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   font-weight: 600;
 }
 
+.mat-checkbox-checked.mat-accent .mat-checkbox-background{
+  background-color: var(--materialComponentColor);
+}
+.mat-slider.mat-accent .mat-slider-track-fill, .mat-slider.mat-accent .mat-slider-thumb, .mat-slider.mat-accent .mat-slider-thumb-label{
+  background-color: var(--materialComponentColor);
+}
+.mat-calendar-body-selected{
+  background-color: var(--materialComponentColor);
+}

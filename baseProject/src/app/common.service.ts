@@ -95,4 +95,10 @@ export class CommonService {
     }
   }
 
+  getModalWidth(defaultWidth:string):string{
+    let mobile = window.matchMedia("(max-width: 600px)");
+    let tablet = window.matchMedia("(max-width: 900px)");
+    return mobile.matches ? '100vw' : (tablet.matches ? '60vw' : defaultWidth)
+  }
+
 }

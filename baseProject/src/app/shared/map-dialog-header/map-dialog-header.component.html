@@ -1,0 +1,21 @@
+<!-- {{headerStyle | json}} -->
+<div class="dialogHeader" id="d_header" >
+    <!-- <div class="row w-100">
+        <div class="col-4" >
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons closeIcon" (click)="closeModal()" aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons minimizeIcon" aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons expandIcon" (click)="maximizeMinimiseModal()" aria-hidden="true"></i>
+        </div>
+        <div class="col-8" >
+               <span class="titleHeader ">{{headerData?.header}} </span>
+        </div>
+    </div> -->
+        <div>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons closeIcon" (click)="closeModal()" aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons" class="fa fa-circle matDialogIcons minimizeIcon" aria-hidden="true"></i>
+            <i *ngIf="!headerData?.hideIcons"  class="fa fa-circle matDialogIcons expandIcon" (click)="maximizeMinimiseModal()" aria-hidden="true"></i>
+        </div>
+        <div >
+               <span class="titleHeader " [ngStyle]="headerStyle">{{headerData?.header}} </span>
+        </div>
+</div>

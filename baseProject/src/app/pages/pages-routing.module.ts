@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CovidComponent } from './covid/covid.component';
 import { ImdbComponent } from './imdb/imdb.component';
+import { KanbanloginComponent } from './kanbanlogin/kanbanlogin.component';
 import { NasaComponent } from './nasa/nasa.component';
 import { RailwayComponent } from './railway/railway.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path : 'weather',
     component : WeatherComponent
+  },
+  {
+    path : 'kanban',
+    component : KanbanloginComponent
   }
 ];
 

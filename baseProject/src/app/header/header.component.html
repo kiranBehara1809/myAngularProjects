@@ -19,35 +19,37 @@
     <div class="commonPopover" (click)="$event.stopPropagation();">
         <div class="settingCard">
             <span class="settingNameHeading">Display</span>
-            <input type="range" class="w-100" (input)="onBrightnessSliderChange($event)"
-                [(ngModel)]="defaultBrightness" name="vol" min="0" max="10">
+            <mat-slider min="0" max="10" class="w-100" (input)="onBrightnessSliderChange($event)"
+                [(ngModel)]="defaultBrightness">
+                <input matSliderThumb>
+            </mat-slider>
         </div>
     </div>
 </mat-menu>
 
 <ng-template #welcomeNote>
-        <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
-        <div mat-dialog-content>
-            <p>
-                    Hi there..!, I am kiran Behara and I have 3 years of experience as an Angular Developer with 
-                    a little bit java and Oracle knowledge, I like the MacOs interaface a lot, so I tried to 
-                    develop my personal portfolio similar to Macos.
-            </p>
-            <p>Tech Stack :</p>
-            <ol>
-                <li>Angular</li>
-                <li>Harper DB</li>
-                <li>NodeJs</li>
-                <li>Express</li>
-                <li>Mongo</li>
-            </ol>
-            <!-- <p>To Be Hidden<br/>
+    <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
+    <div mat-dialog-content>
+        <p>
+            Hi there..!, I am kiran Behara and I have 3 years of experience as an Angular Developer with
+            a little bit java and Oracle knowledge, I like the MacOs interaface a lot, so I tried to
+            develop my personal portfolio similar to Macos.
+        </p>
+        <p>Tech Stack :</p>
+        <ol>
+            <li>Angular</li>
+            <li>Harper DB</li>
+            <li>NodeJs</li>
+            <li>Express</li>
+            <li>Mongo</li>
+        </ol>
+        <!-- <p>To Be Hidden<br/>
                 git config --global user.name "Kiran Behara"
                 git config --global user.email "kiranbehara69@gmail.com"
             </p> -->
-            <!-- <p id="welcomeNote"></p> -->
-        </div>
-        <div mat-dialog-actions>
-            <button cdkFocusInitial   mat-button mat-dialog-close class="fullButton">continue</button>
-        </div>
+        <!-- <p id="welcomeNote"></p> -->
+    </div>
+    <div mat-dialog-actions>
+        <button cdkFocusInitial mat-button mat-dialog-close class="fullButton">continue</button>
+    </div>
 </ng-template>

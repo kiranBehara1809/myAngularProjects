@@ -1,0 +1,50 @@
+<div class="commonHeading loginHeading">
+    <span>Login</span>
+    <button mat-button mat-dialog-close class="noWidthButton" (click)="addNewUser()">Add User</button>
+</div>
+<ng-template #kanbanWelcomeNote>
+    <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
+    <div mat-dialog-content>
+        <p>
+            This is a simple Kanban board, where you can create and raise to particular set of predefined users available in the system, you can raise a bug, assign, create task, create issue, set priority for them and can be viewed in kanban board.
+            By default the system logs in with the Admin, you can login with any user using the password "SimbaIsAGoodBoy"
+        </p>
+    </div>
+    <div mat-dialog-actions>
+        <button cdkFocusInitial   mat-button mat-dialog-close class="fullButton">continue</button>
+    </div>
+</ng-template>
+<ng-template #addUserModal>
+    <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
+    <div mat-dialog-content>
+        <form [formGroup]="addUserForm">
+            <div class="row w-100 pt-4">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="firstName" autocomplete="off">
+                    <mat-error>{{getFormErrorMessage(addUserForm,'firstName')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row w-100 pt-2">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput type="text" placeholder="Last Name" formControlName="lastName" autocomplete="off">
+                    <mat-error>{{getFormErrorMessage(addUserForm,'lastName')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row w-100 pt-2">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" placeholder="Email" formControlName="userEmail" autocomplete="off">
+                    <mat-error>{{getFormErrorMessage(addUserForm,'userEmail')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row w-100 pt-2">
+                <mat-checkbox>Is Admin?</mat-checkbox>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="alignBottom">
+        <button mat-button  [disabled]="!addUserForm.valid" class="fullButton" >Proceed</button>
+    </div>
+</ng-template>

@@ -6,5 +6,6 @@ export interface MAT_DIALOG_HEADER {
     maxWidth?: string,
     maxHeight?:string,
     defaultWidth?:string,
-    defaultHeight?:string
+    defaultHeight?:string,
+    enableOnlyClose? : boolean
 }
