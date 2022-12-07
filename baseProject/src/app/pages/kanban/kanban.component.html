@@ -1,1 +1,38 @@
-<p>kanban works!</p>
+<div id="xyz">
+    <mat-toolbar class="kanbanHeader">
+        <span>Kanban</span>
+        <span class="example-spacer"></span>
+        <i class="fa fa-plus-circle cursorPointer icon" (click)="addNew()" aria-hidden="true"></i>
+        <i class="fa fa-info-circle cursorPointer icon" aria-hidden="true"></i>
+        <i class="fa fa-bell cursorPointer icon" aria-hidden="true"></i>
+        <i class="fa fa-list-alt cursorPointer icon" aria-hidden="true"></i>
+        <i class="fa fa-user-circle cursorPointer icon" (click)="openFullscreen()" aria-hidden="true"></i>
+    </mat-toolbar>
+</div>
+
+<ng-template #add>
+    <mat-list>
+        <mat-list-item class="optionColor">
+            Bug
+            <span class="example-spacer"></span>
+            <i class="fa fa-bug" aria-hidden="true"></i>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="optionColor">
+            Epic
+            <span class="example-spacer"></span>
+            <i class="fa fa-ship" aria-hidden="true"></i>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="optionColor">
+            Feature Request
+            <span class="example-spacer"></span>
+            <i class="fa fa-suitcase" aria-hidden="true"></i>
+        </mat-list-item>
+        <mat-list-item class="optionColor">
+            Task
+            <span class="example-spacer"></span>
+            <i class="fa fa-industry" aria-hidden="true"></i>
+        </mat-list-item>
+    </mat-list>
+</ng-template>

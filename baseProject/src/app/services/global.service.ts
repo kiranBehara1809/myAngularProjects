@@ -58,4 +58,12 @@ export class GlobalService {
     // return this.http.get(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=da931ad4502df1d216edb321e2af6ecc`)
     return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=da931ad4502df1d216edb321e2af6ecc&units=metric`)
   }
+
+  harperPost(payload:any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      "Authorization" : "Basic Y2xvdWRfYWRtaW46bmV3U2ltYmFAMQ=="
+    });
+    return this.http.post(`https://cloud-db-simba.harperdbcloud.com`,JSON.stringify(payload),{headers})
+  }
 }

@@ -3,3 +3,23 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.loginStyle{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100% !important;
+    align-items: center;
+}
+.loginCard{
+    width: 30vw;
+    background: transparent;
+    height: auto;
+    @media screen and (max-width: 600px) {
+        width: 80vw;
+      }
+}
+.actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

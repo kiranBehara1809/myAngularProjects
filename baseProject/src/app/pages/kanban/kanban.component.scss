@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.kanbanHeader{
+    background: var(--materialComponentColor) !important;
+    height: 40px;
+    border-radius: 10px;
+    color: var(--white);
+}
+.icon{
+    padding: 0px 5px !important;
+}
+.optionColor{
+    // color : var(--white) !important;
+    font-weight: 500;
+    cursor: pointer;
+}

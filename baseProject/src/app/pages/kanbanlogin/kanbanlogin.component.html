@@ -1,13 +1,46 @@
 <div class="commonHeading loginHeading">
     <span>Login</span>
-    <button mat-button mat-dialog-close class="noWidthButton" (click)="addNewUser()">Add User</button>
+    <button mat-button  class="noWidthButton" (click)="addNewUser()">Add User</button>
+</div>
+<div class="workArea loginStyle">
+    <mat-card class="loginCard">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="loginForm">
+            <div class="row w-100 pt-4">
+                <mat-form-field  >
+                    <mat-label>Users</mat-label>
+                    <mat-select formControlName="userName">
+                      <mat-option *ngFor="let user of usersList" [value]="user.id">
+                          {{user.firstName}} {{user.lastName}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>{{getFormErrorMessage(loginForm,'userName')}}</mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="row w-100 pt-2">
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off">
+                    <mat-error>{{getFormErrorMessage(loginForm,'password')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+        <mat-card-actions class="actions">
+          <button mat-button  class="noWidthButton" (click)="showKanbanWelcomeModal()">Info</button>
+          <button mat-button  class="noWidthButton" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+        </mat-card-actions>
+      </mat-card>
+
 </div>
 <ng-template #kanbanWelcomeNote>
     <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
     <div mat-dialog-content>
         <p>
             This is a simple Kanban board, where you can create and raise to particular set of predefined users available in the system, you can raise a bug, assign, create task, create issue, set priority for them and can be viewed in kanban board.
-            By default the system logs in with the Admin, you can login with any user using the password "SimbaIsAGoodBoy"
+            <br>
+            You can login with any user using the password "SimbaIsAGoodBoy"
         </p>
     </div>
     <div mat-dialog-actions>
@@ -45,6 +78,6 @@
         </form>
     </div>
     <div mat-dialog-actions class="alignBottom">
-        <button mat-button  [disabled]="!addUserForm.valid" class="fullButton" >Proceed</button>
+        <button mat-button  [disabled]="!addUserForm.valid" class="fullButton" (click)="saveUser()">Proceed</button>
     </div>
 </ng-template>

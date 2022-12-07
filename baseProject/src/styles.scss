@@ -15,7 +15,7 @@
     --url : url('../assets/images/wallpaper1.jpg');
     --materialComponentColor : #007ccf;
 }
-html, body { height: 100%; }
+html, body { height: 100%;  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: black; }
 .mat-menu-panel{
     background: rgba( 255, 255, 255, 0.25 );
@@ -228,4 +228,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 }
 .mat-calendar-body-selected{
   background-color: var(--materialComponentColor);
+}
+
+.mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled){
+  background: var(--materialComponentColor) !important;
+  color: var(--white) !important;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  background: var(--materialComponentColor) !important;
+  color: var(--white) !important;
+}
+.mat-bottom-sheet-container{
+  background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    max-width: 500px !important;
 }

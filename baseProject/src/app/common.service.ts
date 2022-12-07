@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
 import { GlobalConstants } from './globals/GlobalConstants';
@@ -12,7 +13,7 @@ import { REGEX } from './globals/REGEX';
 export class CommonService {
   _gc = GlobalConstants
   _regex = REGEX
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private dialog:MatDialog) { }
 
   getFormFieldErrorMessage(formGroup: FormGroup, formControlName: string): string {
     let errorMsg = ''
@@ -101,4 +102,8 @@ export class CommonService {
     return mobile.matches ? '100vw' : (tablet.matches ? '60vw' : defaultWidth)
   }
 
+  closeDialogById(dialogId:string){
+    const dialog = this.dialog.getDialogById(dialogId)
+    dialog?.close()
+  }
 }

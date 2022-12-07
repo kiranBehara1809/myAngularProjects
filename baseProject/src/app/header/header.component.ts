@@ -8,6 +8,7 @@ import { Utils } from '../globals/Utils';
 import { MapReminderComponent } from '../commonComponents/map-reminder/map-reminder.component'
 import { GlobalService } from '../services/global.service';
 import { CommonService } from '../common.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'map-header',
   templateUrl: './header.component.html',
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
   matDialogHeader: MAT_DIALOG_HEADER | undefined
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
 
-  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService : GlobalService, private commonService :CommonService) { }
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService : GlobalService, private commonService :CommonService, private route : Router) { }
 
   ngOnInit(): void {
     const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
@@ -105,5 +106,8 @@ export class HeaderComponent implements OnInit {
         maxWidth : mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '50vw'),
         id :'reminderModal'
       })
+  }
+  openSettings(){
+    this.route.navigateByUrl(`pages/settings`)
   }
 }
