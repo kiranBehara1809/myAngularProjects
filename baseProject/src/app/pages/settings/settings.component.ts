@@ -9,6 +9,7 @@ import { CommonService } from 'src/app/common.service';
 })
 export class SettingsComponent implements OnInit {
   selectedObject:any=null;
+  batteryObject:any;
   sampleForm:FormGroup;
   selectedColor:any = '#007ccf';
   settingsList = [
@@ -17,11 +18,11 @@ export class SettingsComponent implements OnInit {
     //   name: 'Brightness',
     //   class: ''
     // },
-    // {
-    //   id: 2,
-    //   name: 'Battery',
-    //   class: ''
-    // },
+    {
+      id: 2,
+      name: 'Battery',
+      class: ''
+    },
     {
       id: 3,
       name: 'Notifications',
@@ -48,7 +49,7 @@ export class SettingsComponent implements OnInit {
       class: ''
     },
   ]
-  constructor(private commonService:CommonService, private fb:FormBuilder) { 
+  constructor( private fb:FormBuilder, private commonService: CommonService) { 
     const sessionColor = sessionStorage.getItem("MATERIAL_COMPONENT_COLOR")
     if(sessionColor != null && sessionColor != undefined ){
       this.selectedColor = sessionColor
@@ -63,8 +64,11 @@ export class SettingsComponent implements OnInit {
     let mobile = window.matchMedia("(max-width: 600px)");
     let tablet = window.matchMedia("(max-width: 900px)");
     if(mobile.matches || tablet.matches){
-     this.settingsList = this.settingsList.filter(x => x.id != 3)
+     this.settingsList = this.settingsList.filter(x => x.id != 3 && x.id != 2)
     }
+    this.commonService.getBatteryDetails().then(res =>{
+      this.batteryObject = res
+     })
   }
   onClickSetting(item:any){
     this.selectedObject = null;
@@ -95,5 +99,11 @@ export class SettingsComponent implements OnInit {
       let root = document.documentElement;
       root.style.setProperty('--materialComponentColor', `${this.selectedColor}`)
       sessionStorage.setItem("MATERIAL_COMPONENT_COLOR", `${this.selectedColor}`)
+  }
+  getBgColor(color:string, bgColor:string){
+    return {
+      'background-color' : bgColor,
+      'color' : color
+    }
   }
 }

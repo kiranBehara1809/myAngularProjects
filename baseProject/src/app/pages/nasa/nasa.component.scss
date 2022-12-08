@@ -47,7 +47,7 @@
     width: 200px;
     height: 200px;
     perspective: 1000px;
-    background-color: #2980b9;
+    background-color: var(--materialComponentColor);
     border-radius: 15px;
     color: white;
     transform: rotateY(180deg);

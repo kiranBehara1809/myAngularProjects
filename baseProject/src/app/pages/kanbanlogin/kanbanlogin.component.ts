@@ -23,7 +23,7 @@ export class KanbanloginComponent implements OnInit {
   usersList:any=[]
   addUserForm: FormGroup;
   loginForm: FormGroup;
-  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private fb: FormBuilder, private router:Router) {
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private fb: FormBuilder, private router:Router,private window : Window) {
     this.addUserForm = this.fb.group({
       firstName: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8), Validators.minLength(3), Validators.pattern(this._regex.ALPHABETS_ONLY)])),
       lastName: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8), Validators.minLength(3), Validators.pattern(this._regex.ALPHABETS_ONLY)])),
@@ -38,6 +38,7 @@ export class KanbanloginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers()
+    this.commonService.getBatteryDetails()
   }
   ngAfterViewInit() {
     this.showKanbanWelcomeModal()

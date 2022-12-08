@@ -1,0 +1,25 @@
+.customColor{
+    color: var(--materialComponentColor) !important;
+    border:1px solid var(--materialComponentColor) !important;
+}
+.customColor:hover{
+    background: var(--materialComponentColor) !important;
+    border:1px solid var(--white) !important;
+    color: var(--white) !important;
+}
+.percentageValueinSpinner{
+    position: relative;
+    left: -65px;
+    top: 40px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.battery{
+    padding: 0px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    height: 20px;
+    margin-right : 5px;
+    line-height: 1.8;
+    width: 47px;
+}

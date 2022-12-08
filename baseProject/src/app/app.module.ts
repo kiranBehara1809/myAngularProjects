@@ -37,7 +37,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule
   ],
   providers: [DatePipe, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: Window, useValue: window }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

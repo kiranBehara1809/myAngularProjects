@@ -13,7 +13,7 @@ import { REGEX } from './globals/REGEX';
 export class CommonService {
   _gc = GlobalConstants
   _regex = REGEX
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private dialog:MatDialog) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private dialog: MatDialog, private window: Window) { }
 
   getFormFieldErrorMessage(formGroup: FormGroup, formControlName: string): string {
     let errorMsg = ''
@@ -85,9 +85,9 @@ export class CommonService {
     const permission = Notification.permission
     if (permission === "granted") {
       let sampleNotification = new Notification(title, { body })
-    } else if (permission === 'denied') { 
-        this.openSnackBar('Notifications are denied/blocked, please enable them to proceed', this._gc.SNACK_TOASTER_INFO)
-     } else {
+    } else if (permission === 'denied') {
+      this.openSnackBar('Notifications are denied/blocked, please enable them to proceed', this._gc.SNACK_TOASTER_INFO)
+    } else {
       Notification.requestPermission(permission => {
         if (permission === "granted") {
           let sampleNotification = new Notification(title, { body })
@@ -96,14 +96,97 @@ export class CommonService {
     }
   }
 
-  getModalWidth(defaultWidth:string):string{
+  getModalWidth(defaultWidth: string): string {
     let mobile = window.matchMedia("(max-width: 600px)");
     let tablet = window.matchMedia("(max-width: 900px)");
     return mobile.matches ? '100vw' : (tablet.matches ? '60vw' : defaultWidth)
   }
 
-  closeDialogById(dialogId:string){
+  closeDialogById(dialogId: string) {
     const dialog = this.dialog.getDialogById(dialogId)
     dialog?.close()
   }
+
+  getBrowserDetails() {
+    let nAgt = navigator.userAgent;
+    let browserName = navigator.appName;
+    let fullVersion = '' + parseFloat(navigator.appVersion);
+    let majorVersion = parseInt(navigator.appVersion, 10);
+    let nameOffset, verOffset, ix;
+    if ((verOffset = nAgt.indexOf("Opera")) != -1) {
+      browserName = "Opera";
+      fullVersion = nAgt.substring(verOffset + 6);
+      if ((verOffset = nAgt.indexOf("Version")) != -1)
+        fullVersion = nAgt.substring(verOffset + 8);
+    }
+    else if ((verOffset = nAgt.indexOf("MSIE")) != -1) {
+      browserName = "Microsoft Internet Explorer";
+      fullVersion = nAgt.substring(verOffset + 5);
+    }
+    else if ((verOffset = nAgt.indexOf("Chrome")) != -1) {
+      browserName = "Chrome";
+      fullVersion = nAgt.substring(verOffset + 7);
+    }
+    else if ((verOffset = nAgt.indexOf("Safari")) != -1) {
+      browserName = "Safari";
+      fullVersion = nAgt.substring(verOffset + 7);
+      if ((verOffset = nAgt.indexOf("Version")) != -1)
+        fullVersion = nAgt.substring(verOffset + 8);
+    }
+    else if ((verOffset = nAgt.indexOf("Firefox")) != -1) {
+      browserName = "Firefox";
+      fullVersion = nAgt.substring(verOffset + 8);
+    }
+    else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) <
+      (verOffset = nAgt.lastIndexOf('/'))) {
+      browserName = nAgt.substring(nameOffset, verOffset);
+      fullVersion = nAgt.substring(verOffset + 1);
+      if (browserName.toLowerCase() == browserName.toUpperCase()) {
+        browserName = navigator.appName;
+      }
+    }
+    if ((ix = fullVersion.indexOf(";")) != -1)
+      fullVersion = fullVersion.substring(0, ix);
+    if ((ix = fullVersion.indexOf(" ")) != -1)
+      fullVersion = fullVersion.substring(0, ix);
+
+    majorVersion = parseInt('' + fullVersion, 10);
+    if (isNaN(majorVersion)) {
+      fullVersion = '' + parseFloat(navigator.appVersion);
+      majorVersion = parseInt(navigator.appVersion, 10);
+    }
+    return browserName + "~~" + fullVersion
+  }
+
+  getOsDetails() {
+    let detectOS = "Unknown OS";
+    if (navigator.appVersion.indexOf("Win") != -1)
+      detectOS = "Windows";
+
+    if (navigator.appVersion.indexOf("Mac") != -1)
+      detectOS = "MacOS";
+
+    if (navigator.appVersion.indexOf("Linux") != -1)
+      detectOS = "Linux";
+    return detectOS
+  }
+
+  getBatteryDetails() {
+    let window: any = this.window
+    let battery = window.navigator.battery || window.navigator.webkitBattery || window.navigator.mozBattery;
+    let promise = new Promise<any>((resolve, reject)=>{
+      if (window.navigator.getBattery) {
+        window.navigator.getBattery().then((logBattery:any)=>{
+         resolve(logBattery)
+        });
+      } else if (battery) {
+        resolve(battery)
+      }else{
+        reject(null)
+      }
+    })
+    
+    return promise
+  }
+
 }

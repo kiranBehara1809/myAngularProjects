@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   currentDateTime: any
   _gc = GlobalConstants
+  batteryObject:any=null;
   selectedDateFromCalendar = new Date()
   defaultBrightness: any = 10
   matDialogHeader: MAT_DIALOG_HEADER | undefined
@@ -25,6 +26,10 @@ export class HeaderComponent implements OnInit {
   constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService : GlobalService, private commonService :CommonService, private route : Router) { }
 
   ngOnInit(): void {
+    this.commonService.getBatteryDetails().then(res =>{
+      this.batteryObject = res || null
+      console.log(this.batteryObject.level)
+     })
     const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
     let day = Utils.getDayShortName(dayNum)
     setInterval(() => {
@@ -109,5 +114,12 @@ export class HeaderComponent implements OnInit {
   }
   openSettings(){
     this.route.navigateByUrl(`pages/settings`)
+  }
+  getBgColor(){
+    const batteryLevel = this.batteryObject?.level * 100
+    return {
+      'background-color' : batteryLevel <=25 ? 'red' : (batteryLevel <= 80 ? 'orange' : 'green'),
+      'color' : (batteryLevel <=25 || batteryLevel >= 80) ? 'white' : 'black'
+    }
   }
 }

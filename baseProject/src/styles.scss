@@ -208,6 +208,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   padding: 5px 0;
   display: flex;
   flex-wrap: wrap;
+  overflow: auto;
   .detailItem{
       display: flex;
       width: 300px;
@@ -234,13 +235,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   background: var(--materialComponentColor) !important;
   color: var(--white) !important;
 }
+.mat-primary .mat-option{
+  height: 35px !important;
+}
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
   background: var(--materialComponentColor) !important;
   color: var(--white) !important;
+ 
 }
 .mat-bottom-sheet-container{
   background: rgba( 255, 255, 255, 0.25 );
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     max-width: 500px !important;
+}
+.mat-progress-spinner circle, .mat-spinner circle{
+  stroke:  var(--materialComponentColor) !important;
+}
+.ot{
+  font-size: 14px;
+}
+.padLeft20{
+  padding-left: 20px !important;
 }

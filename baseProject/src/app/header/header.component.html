@@ -3,6 +3,11 @@
     <span class="applicationName">My Projects</span>
     <span class="example-spacer"></span>
     <span class="settings" [matMenuTriggerFor]="settingsMenu"><i class="fa fa-cog" aria-hidden="true"></i></span>
+    <span *ngIf="batteryObject cursorPointer" class="battery" [ngStyle]="getBgColor()">
+        {{(batteryObject.level * 100).toFixed(0)}}
+        <span class="cursorPointer" *ngIf="!batteryObject.charging">%</span>
+        <i class="fa fa-bolt" *ngIf="batteryObject.charging" aria-hidden="true"></i>
+    </span>
     <span class="dateTime" [matMenuTriggerFor]="datePopover">{{currentDateTime}}</span>
 </mat-toolbar>
 
