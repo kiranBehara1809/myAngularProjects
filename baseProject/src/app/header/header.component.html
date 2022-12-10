@@ -2,11 +2,11 @@
     <i class="fa fa-apple logoSize" aria-hidden="true"></i>
     <span class="applicationName">My Projects</span>
     <span class="example-spacer"></span>
-    <span class="settings" [matMenuTriggerFor]="settingsMenu"><i class="fa fa-cog" aria-hidden="true"></i></span>
-    <span *ngIf="batteryObject cursorPointer" class="battery" [ngStyle]="getBgColor()">
-        {{(batteryObject.level * 100).toFixed(0)}}
-        <span class="cursorPointer" *ngIf="!batteryObject.charging">%</span>
-        <i class="fa fa-bolt" *ngIf="batteryObject.charging" aria-hidden="true"></i>
+    <span class="settings" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="settingsMenu"><i class="fa fa-cog" aria-hidden="true"></i></span>
+    <span  class="battery cursorPointer" [ngStyle]="getBgColor()" [matTooltip]="!batteryObject ? 'Battery can not be calculate on this device/ browser' : ((((batteryObject?.level || 0 ) * 100).toFixed(0)+'%') +  (batteryObject?.charging ? ' Charging' : ''))">
+        {{((batteryObject?.level || 0 ) * 100).toFixed(0)}}
+        <span class="cursorPointer" *ngIf="!batteryObject?.charging">%</span>
+        <i class="fa fa-bolt" *ngIf="batteryObject?.charging" aria-hidden="true"></i>
     </span>
     <span class="dateTime" [matMenuTriggerFor]="datePopover">{{currentDateTime}}</span>
 </mat-toolbar>
@@ -29,7 +29,7 @@
                 <input matSliderThumb>
             </mat-slider>
         </div>
-        <button mat-button mat-dialog-close class="fullButton" (click)="openSettings()">Open Settings</button>
+        <button mat-button mat-dialog-close class="fullButton" (click)="openSettings();menuTrigger.closeMenu()">Open Settings</button>
     </div>
 </mat-menu>
 
@@ -38,8 +38,8 @@
     <div mat-dialog-content>
         <p>
             Hi there..!, I am kiran Behara and I have 3 years of experience as an Angular Developer with
-            a little bit java and Oracle knowledge, I like the MacOs interaface a lot, so I tried to
-            develop my personal portfolio similar to Macos.
+            a little bit java and Oracle knowledge, This is my personal portfolio and tried to develop it like a web operating system.<br/>
+            <span class="text-danger">Note : Use Chrome for best experience</span>
         </p>
         <p>Tech Stack :</p>
         <ol>

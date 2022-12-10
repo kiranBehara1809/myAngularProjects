@@ -17,11 +17,12 @@
                 </div>
             </div>
             <mat-list>
-                <mat-list-item class="optionColor">
-                   <span class="ot">
-                    These are predefined wallpapers which are available and you can click on desired button to change
-                    the background image of the application
-                   </span>
+                <mat-list-item class="optionColor h-auto">
+                    <span class="ot">
+                        These are predefined wallpapers which are available and you can click on desired button to
+                        change
+                        the background image of the application
+                    </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </mat-list>
@@ -57,12 +58,13 @@
                 </div>
                 <div class="detailItem" style="width: auto;">
                     <mat-list>
-                        <mat-list-item class="optionColor">
-                           <span class="ot">
-                            You can send enter the details and hit on the Show Sample Notification , the data you have
-                            entered will be viewed as a browser notification, please note that this feature is not
-                            available in mobile
-                           </span>
+                        <mat-list-item class="optionColor h-auto">
+                            <span class="ot">
+                                You can send enter the details and hit on the Show Sample Notification , the data you
+                                have
+                                entered will be viewed as a browser notification, please note that this feature is not
+                                available in mobile
+                            </span>
                         </mat-list-item>
                         <mat-divider></mat-divider>
                     </mat-list>
@@ -72,21 +74,20 @@
         <div class="details" *ngIf="selectedObject.id === 5">
             <mat-list>
                 <mat-list-item class="optionColor h-auto">
-                    <input type="color" style="width: 200px;" (input)="onChangeColor()"
-                        [(ngModel)]="selectedColor" />
+                    <input type="color" style="width: 200px;" (input)="onChangeColor()" [(ngModel)]="selectedColor" />
                     <span class="example-spacer"></span>
-                       <span class="ot padLeft20">
+                    <span class="ot padLeft20">
                         You can select a color using the color picker here, after selection the colour of all material
                         components like buttons, sliders, checkboxes etc gets changed. Some of the common material
                         components are given below.
-                       </span>
+                    </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor h-auto">
+                <mat-list-item class="optionColor ">
                     <button mat-button class="noWidthButton">Common Button</button>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor h-auto">
+                <mat-list-item class="optionColor">
                     <mat-checkbox>common checkbox</mat-checkbox>
                 </mat-list-item>
                 <mat-divider></mat-divider>
@@ -109,26 +110,30 @@
             </mat-list>
         </div>
         <div class="details" *ngIf="selectedObject.id === 2">
-            <mat-progress-spinner [mode]="'determinate'" [value]="batteryObject.level*100">
+            <mat-progress-spinner [mode]="'determinate'" [value]="(batteryObject?.level || 0 )*100">
             </mat-progress-spinner>
-            <div class="percentageValueinSpinner">{{(batteryObject.level*100).toFixed(0)}}%</div>
+            <div class="percentageValueinSpinner">{{((batteryObject?.level || 0 )*100).toFixed(0)}}%</div>
             <mat-list>
-                <mat-list-item class="optionColor">
+                <mat-list-item class="optionColor h-auto">
                     <span class="ot padLeft20">
-                        Device battery percentage has been calculatedand displayed here, charging status has been captured
-                    and displayed, please note this feature might not work in some browser/OS , example this feature
-                    will not work in iOS(mobile)
+                        <span class="text-danger" *ngIf="!batteryObject">
+                            Battery level can not be calculated on this device / browser 
+                        </span><br/>
+                        Device battery percentage has been calculatedand displayed here, charging status has been
+                        captured
+                        and displayed, please note this feature might not work in some browser/OS , example this feature
+                        will not work in iOS(mobile)
                     </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor">
-                   <span class="ot padLeft20">
-                    Battery percentage is also being displayed in the header of the application and it has some
-                    background color to it
-                   </span>
+                <mat-list-item class="optionColor h-auto">
+                    <span class="ot padLeft20">
+                        Battery percentage is also being displayed in the header of the application and it has some
+                        background color to it
+                    </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor">
+                <mat-list-item class="optionColor h-auto">
                     <span class="battery" [ngStyle]="getBgColor('white','red')">
                         15
                         <i class="fa fa-bolt" aria-hidden="true"></i>
@@ -142,7 +147,7 @@
                     </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor">
+                <mat-list-item class="optionColor h-auto">
                     <span class="battery" [ngStyle]="getBgColor('black','orange')">
                         65
                         <i class="fa fa-bolt" aria-hidden="true"></i>
@@ -152,11 +157,11 @@
                     </span>
                     <span class="ot padLeft20">
                         This is how it will display, the bolt symbol indicates that the device is charging, Orange color
-                    indicates that the battery level is less than or equal to 80
+                        indicates that the battery level is less than or equal to 80
                     </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="optionColor">
+                <mat-list-item class="optionColor h-auto">
                     <span class="battery" [ngStyle]="getBgColor('white','green')">
                         81
                         <i class="fa fa-bolt" aria-hidden="true"></i>
@@ -166,7 +171,56 @@
                     </span>
                     <span class="ot padLeft20">
                         This is how it will display, the bolt symbol indicates that the device is charging, Green color
-                    indicates that the battery level is greater than or equal to 80
+                        indicates that the battery level is greater than or equal to 80
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </div>
+        <div class="details" *ngIf="selectedObject.id === 6">
+            <mat-list>
+                <mat-list-item class="optionColor h-auto">
+                    <span class="ot padLeft20">
+                        This general settings gives us the some of the common hardware & other specifications of the system / mobile, please not that some of the browsers does not give access to capture this information and the information given is not compolsaryly accurate, these results might be approximate.
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item class="optionColor">
+                    <span class="battery text-center" [ngStyle]="getBgColor('white','red')">
+                        {{systemInformation?.deviceRam || ' ? '}}
+                        {{systemInformation?.deviceRam != null ? 'GB' : ''}}
+                    </span>
+                    <span class="ot padLeft20">
+                        
+                        <ng-container *ngIf="systemInformation?.deviceRam != null">
+                            This system has atleast {{systemInformation.deviceRam}}GB of RAM.
+                        </ng-container>
+                        <ng-container *ngIf="systemInformation?.deviceRam === null">
+                            Device RAM can not be calculated on this device
+                        </ng-container>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item class="optionColor">
+                    <span class="battery text-center" [ngStyle]="getBgColor('black','orange')">
+                        {{systemInformation?.availableProcessors}}
+                    </span>
+                    <span class="ot padLeft20">
+                        This system has {{systemInformation?.availableProcessors}} processors availble.
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item class="optionColor">
+                    <img src="assets/images/browsers/{{systemInformation?.browserLogo}}" height="40" width="40" />
+                    <span class="ot padLeft20">
+                        You are using {{systemInformation?.browser}} browser, and version of your browser is <b>{{systemInformation?.browserVersion}}</b>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider> 
+                <mat-list-item class="optionColor">
+                    <img src="assets/images/os/{{systemInformation?.osLogo}}" height="40" width="40" />
+                    <span class="ot padLeft20">
+                        You are on {{systemInformation?.os}} Operating System
                     </span>
                 </mat-list-item>
                 <mat-divider></mat-divider>

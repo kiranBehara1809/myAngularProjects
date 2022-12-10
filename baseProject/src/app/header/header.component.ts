@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.commonService.getBatteryDetails().then(res =>{
       this.batteryObject = res || null
-      console.log(this.batteryObject.level)
      })
     const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
     let day = Utils.getDayShortName(dayNum)
@@ -116,7 +115,7 @@ export class HeaderComponent implements OnInit {
     this.route.navigateByUrl(`pages/settings`)
   }
   getBgColor(){
-    const batteryLevel = this.batteryObject?.level * 100
+    const batteryLevel = this.batteryObject?.level * 100;
     return {
       'background-color' : batteryLevel <=25 ? 'red' : (batteryLevel <= 80 ? 'orange' : 'green'),
       'color' : (batteryLevel <=25 || batteryLevel >= 80) ? 'white' : 'black'

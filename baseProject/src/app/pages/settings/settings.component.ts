@@ -11,6 +11,7 @@ export class SettingsComponent implements OnInit {
   selectedObject:any=null;
   batteryObject:any;
   sampleForm:FormGroup;
+  systemInformation:any=null;
   selectedColor:any = '#007ccf';
   settingsList = [
     // {
@@ -48,6 +49,11 @@ export class SettingsComponent implements OnInit {
       name: 'Color Scheme',
       class: ''
     },
+    {
+      id: 6,
+      name: 'General',
+      class: ''
+    },
   ]
   constructor( private fb:FormBuilder, private commonService: CommonService) { 
     const sessionColor = sessionStorage.getItem("MATERIAL_COMPONENT_COLOR")
@@ -64,11 +70,13 @@ export class SettingsComponent implements OnInit {
     let mobile = window.matchMedia("(max-width: 600px)");
     let tablet = window.matchMedia("(max-width: 900px)");
     if(mobile.matches || tablet.matches){
-     this.settingsList = this.settingsList.filter(x => x.id != 3 && x.id != 2)
+     this.settingsList = this.settingsList.filter(x => x.id != 3)
     }
     this.commonService.getBatteryDetails().then(res =>{
       this.batteryObject = res
      })
+     this.systemInformation = this.commonService.getSystemInformation();
+     console.log(this.systemInformation)
   }
   onClickSetting(item:any){
     this.selectedObject = null;

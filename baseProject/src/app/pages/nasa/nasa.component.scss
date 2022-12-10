@@ -40,7 +40,7 @@
   }
   
   .flip-card-front {
-    color: black;
+    color: var(--black);
   }
   
   .flip-card-back {
@@ -49,7 +49,7 @@
     perspective: 1000px;
     background-color: var(--materialComponentColor);
     border-radius: 15px;
-    color: white;
+    color: var(--white);
     transform: rotateY(180deg);
     p{
         padding: 5px 0;
