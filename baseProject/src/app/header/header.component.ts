@@ -17,39 +17,37 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   currentDateTime: any
   _gc = GlobalConstants
-  batteryObject:any=null;
+  batteryObject: any = null;
   selectedDateFromCalendar = new Date()
   defaultBrightness: any = 10
   matDialogHeader: MAT_DIALOG_HEADER | undefined
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
 
-  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService : GlobalService, private commonService :CommonService, private route : Router) { }
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private route: Router, private window: Window) { }
 
   ngOnInit(): void {
-    this.commonService.getBatteryDetails().then(res =>{
+    this.commonService.getBatteryDetails().then(res => {
       this.batteryObject = res || null
-     })
-    const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() -1
+    })
+    const dayNum = new Date().getDay() === 0 ? 0 : new Date().getDay() - 1
     let day = Utils.getDayShortName(dayNum)
     setInterval(() => {
-      this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'MMM dd  hh:mm:ss')
+      let mobile = window.matchMedia("(max-width: 600px)")
+      let tablet = window.matchMedia("(max-width: 900px)")
+      if(mobile.matches || tablet.matches){
+        this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'hh:mm')
+      }else{
+        this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'MMM dd  hh:mm:ss')
+      }
     }, 1000)
     setTimeout(() => {
       this.openWelcomeNoteModal()
     }, 200);
-    // this.getCurrentLocation()
+    this.getCurrentLocation()
   }
 
   getCurrentLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(res => {
-        console.log(res)
-      });
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
-    navigator.permissions.query({ name: 'geolocation' })
-      .then(console.log)
+    this.commonService.getCurrentLocation(false);
   }
 
   onBrightnessSliderChange(event: MatSliderChange) {
@@ -70,16 +68,16 @@ export class HeaderComponent implements OnInit {
 
   openWelcomeNoteModal() {
     if (this.welcomeNote) {
-      this.globalService.get(`welcomeNote`).subscribe((res:any)=>{
+      this.globalService.get(`welcomeNote`).subscribe((res: any) => {
         const docId = document.getElementById('welcomeNote')
-        if(docId)
+        if (docId)
           docId.innerHTML = res.note
       })
       this.matDialogHeader = {
         hideIcons: true,
         header: "Welcome Note",
       }
-      if(sessionStorage.getItem("WELCOME_MODAL_STATUS") === 'accepted'){
+      if (sessionStorage.getItem("WELCOME_MODAL_STATUS") === 'accepted') {
         return
       }
       let mobile = window.matchMedia("(max-width: 600px)")
@@ -89,8 +87,8 @@ export class HeaderComponent implements OnInit {
         id: 'welcomeNoteModal',
         width: mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '30vw'),
       })
-      welcomeModal.afterClosed().subscribe(res=>{
-        sessionStorage.setItem("WELCOME_MODAL_STATUS",'accepted')
+      welcomeModal.afterClosed().subscribe(res => {
+        sessionStorage.setItem("WELCOME_MODAL_STATUS", 'accepted')
         this.matDialogHeader = undefined
         if (!("Notification" in window)) {
           return
@@ -98,27 +96,30 @@ export class HeaderComponent implements OnInit {
       })
     }
   }
- 
-  openReminderModal(){
+
+  openReminderModal() {
     let mobile = window.matchMedia("(max-width: 600px)")
-      let tablet = window.matchMedia("(max-width: 900px)")
-      const reminderModal = this.dialog.open(MapReminderComponent,{
-        ...this._gc.macintoshModal,
-        position : {top :'top',right : 'right'},
-        width : mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '30vw'),
-        height :'100vh',
-        maxWidth : mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '50vw'),
-        id :'reminderModal'
-      })
+    let tablet = window.matchMedia("(max-width: 900px)")
+    const reminderModal = this.dialog.open(MapReminderComponent, {
+      ...this._gc.macintoshModal,
+      position: { top: 'top', right: 'right' },
+      width: mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '30vw'),
+      height: '100vh',
+      maxWidth: mobile.matches ? '100vw' : (tablet.matches ? '60vw' : '50vw'),
+      id: 'reminderModal'
+    })
   }
-  openSettings(){
+  openSettings() {
     this.route.navigateByUrl(`pages/settings`)
   }
-  getBgColor(){
+  goHome(){
+    this.route.navigateByUrl(`pages/home`)
+  }
+  getBgColor() {
     const batteryLevel = this.batteryObject?.level * 100;
     return {
-      'background-color' : batteryLevel <=25 ? 'red' : (batteryLevel <= 80 ? 'orange' : 'green'),
-      'color' : (batteryLevel <=25 || batteryLevel >= 80) ? 'white' : 'black'
+      'background-color': batteryLevel <= 25 ? 'red' : (batteryLevel <= 80 ? 'orange' : 'green'),
+      'color': (batteryLevel <= 25 || batteryLevel >= 80) ? 'white' : 'black'
     }
   }
 }

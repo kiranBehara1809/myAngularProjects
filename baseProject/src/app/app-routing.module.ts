@@ -4,12 +4,21 @@ import { RemindersListingComponent } from './commonComponents/reminders-listing/
 
 const routes: Routes = [
   {
+    path : '',
+    pathMatch : 'full',
+    redirectTo : 'pages/home'
+  },
+  {
     path : 'pages/reminders',
     component : RemindersListingComponent
   },
   {
     path : 'pages',
     loadChildren : () => import('./pages/pages.module').then(m => m.PagesModule)
+  },
+  {
+    path : '**',
+    redirectTo : 'pages/home'
   }
 ];
 

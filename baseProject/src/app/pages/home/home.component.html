@@ -1,0 +1,70 @@
+<div class="commonHeading">
+    Home Dashboard
+</div>
+<div class="home">
+    <mat-card class="commonCard pincodeCard">
+        <mat-card-title>Find place using zipcode</mat-card-title>
+        <form [formGroup]="zipCodeForm">
+            <mat-form-field class="w-100">
+                <mat-label>Pincode / Zipcode</mat-label>
+                <input matInput type="text" formControlName="pinCode" placeholder="Pincode" autocomplete="off" />
+                <mat-error>{{getFormFieldError(zipCodeForm,'pinCode')}}</mat-error>
+            </mat-form-field>
+        </form>
+        <mat-card-actions class="text-center">
+            <button mat-button class="noWidthButton" [disabled]="!zipCodeForm.valid"
+                (click)="searchPinCodeData()">search</button>
+        </mat-card-actions>
+        <div class="details" *ngIf="pinCodeData">
+            <span class="text-success">{{pinCodeData?.places?.length}} records found</span>
+            <div class="detailItem">
+                <span class="label">Post Code</span>
+                <span class="fieldValue">{{pinCodeData?.postcode}}</span>
+            </div>
+            <div class="detailItem">
+                <span class="label">country</span>
+                <span class="fieldValue">{{pinCodeData?.country}}</span>
+            </div>
+        </div>
+        <mat-accordion  *ngIf="pinCodeData">
+            <mat-expansion-panel style="background: transparent !important;" *ngFor="let data of pinCodeData?.places">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{data?.placename}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="pincodeDetails">
+                    <div class="detailItem">
+                        <span class="label">Area</span>
+                        <span class="fieldValue">{{data?.placename}}</span>
+                    </div>
+                    <div class="detailItem">
+                        <span class="label">State</span>
+                        <span class="fieldValue">{{data?.state}}</span>
+                    </div>
+                    <div class="detailItem">
+                        <span class="label">Latitude</span>
+                        <span class="fieldValue">{{data?.latitude}}</span>
+                    </div>
+                    <div class="detailItem">
+                        <span class="label">Longitude</span>
+                        <span class="fieldValue">{{data?.longitude}}</span>
+                    </div>
+                    <div class="detailItem pt-2">
+                        <button mat-button  class="noWidthButton" (click)="copyData(data)">copy</button>
+                    <button mat-button class="noWidthButton" (click)="openInMaps(data)">open in Maps</button>
+                    </div>
+                    
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        
+    </mat-card>
+    <mat-card class="commonCard randomActivityCard">
+        <mat-card-title>Some Random Activities</mat-card-title>
+        {{randomActivity}}
+        <mat-card-actions class="text-end">
+            <i class="fa fa-clone cursorPointer" (click)="copy(randomActivity)" aria-hidden="true"></i>
+        </mat-card-actions>
+    </mat-card>
+</div>

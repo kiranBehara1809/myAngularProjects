@@ -13,6 +13,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { KanbanloginComponent } from './kanbanlogin/kanbanlogin.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SharedModule } from '../shared/shared.module';
     SettingsComponent,
     WeatherComponent,
     KanbanloginComponent,
-    KanbanComponent
+    KanbanComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

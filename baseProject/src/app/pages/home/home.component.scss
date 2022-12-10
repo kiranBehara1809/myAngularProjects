@@ -1,0 +1,47 @@
+.home{
+    display: flex;
+    flex-wrap: wrap;
+}
+.commonCard{
+    background: transparent !important;
+    width: 300px;
+    margin: 5px;
+    border : 4px solid var(--materialComponentColor);
+    border-bottom:  none;
+    border-right:  none;
+    border-left:  none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    @media screen and (max-width: 600px) {
+        width: 100vw;
+      }
+    mat-card-title{
+        font-size: 14px !important;
+    }
+}
+.randomActivityCard{
+    height: 17vh;
+}
+.pincodeCard{
+    height: 70vh;
+    overflow: auto;
+    @media screen and (max-width: 600px) {
+        height: 53vh;
+      }
+}
+.details{
+    .detailItem{
+        padding: 3px 5px !important;
+    }
+}
+.pincodeDetails{
+    .detailItem{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .label{
+        max-width: auto !important;
+        width: auto !important;
+        min-width: auto  !important;
+    }
+}

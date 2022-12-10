@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CovidComponent } from './covid/covid.component';
+import { HomeComponent } from './home/home.component';
 import { ImdbComponent } from './imdb/imdb.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { KanbanloginComponent } from './kanbanlogin/kanbanlogin.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path : 'kanban',
     component : KanbanComponent
+  },
+  {
+    path : 'home',
+    component : HomeComponent
   }
 ];
 

@@ -66,4 +66,7 @@ export class GlobalService {
     });
     return this.http.post(`https://cloud-db-simba.harperdbcloud.com`,JSON.stringify(payload),{headers})
   }
+  commonGet(url:string){
+    return this.http.get(url)
+  }
 }
