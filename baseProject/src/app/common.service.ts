@@ -289,8 +289,10 @@ export class CommonService {
         sessionStorage.setItem("LON", position.coords.longitude)
       }, (err: any) => {
         if (err.code == 1) {
-          if (showDenied)
-            this.openSnackBar("Access is denied! You can give access by checking the browser settings", this._gc.SNACK_TOASTER_WARN)
+          if (showDenied) {
+            this.openSnackBar("Location access is denied! You can give access by checking the browser settings", this._gc.SNACK_TOASTER_ERROR)
+          }
+
         } else if (err.code == 2) {
           this.openSnackBar("Position is unavailable!", this._gc.SNACK_TOASTER_WARN)
         }
@@ -298,6 +300,13 @@ export class CommonService {
     } else {
       this.openSnackBar("Sorry, browser does not support geolocation!", this._gc.SNACK_TOASTER_WARN);
     }
+  }
+
+  getSunriseAndSunsetTime(hh: number, mm: number, ss: number, amPm:string) {
+    let date = new Date()
+    const utcDate = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${hh}:${mm}:${ss} +0000`
+    const localeDate = (new Date((typeof utcDate === "string" ? new Date(utcDate) : utcDate).toLocaleString("en-US", {timeZone: "IST"})));  
+    return `${localeDate.getHours()-12}:${localeDate.getMinutes()} ${amPm}`
   }
 
 }

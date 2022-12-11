@@ -9,3 +9,19 @@ export interface MAT_DIALOG_HEADER {
     defaultHeight?:string,
     enableOnlyClose? : boolean
 }
+export interface WEATHER {
+    area:string,
+    sunrise:string,
+    sunset:string,
+    temp_max:string,
+    temp_min:string,
+    pressure:number,
+    feels_like:any,
+    temp:any,
+    humidity:any,
+    visibility:any,
+    windSpeed:any,
+    windDeg:any,
+    spinnerValue:any
+
+}

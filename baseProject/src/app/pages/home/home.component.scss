@@ -12,14 +12,29 @@
     border-left:  none;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     @media screen and (max-width: 600px) {
-        width: 100vw;
+        width: 85vw;
       }
     mat-card-title{
         font-size: 14px !important;
     }
+    .weatherHeader{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        span{
+            font-size: 14px !important;
+        }
+    }
 }
+
+
 .randomActivityCard{
-    height: 17vh;
+    height: 15vh;
+}
+.weatherCard{
+    height: 54vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .pincodeCard{
     height: 70vh;
@@ -44,4 +59,103 @@
         width: auto !important;
         min-width: auto  !important;
     }
+}
+.locationBlocked{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    .iconRed{
+        color: var(--macOsRed);
+    }
+}
+.weatherDetails{
+    display:  flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.sunPosition{
+    height: 125px;
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.sencondRowCard{
+    height: 145px;
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.thirdRowCard{
+    height: 125px;
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.sunrise{
+    background:  #fcdbd1 ;
+    .sun{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        left: 10px;
+        background: linear-gradient(to bottom, rgb(252, 74, 26), rgb(247, 183, 51));
+        margin-bottom: 10px;
+    }
+    
+}
+.sunset{
+    background:  #fcdbd1 ;
+    .sun{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        right: 0;
+        left: 70px;
+        bottom: 0;
+        top: 16px;
+        background: linear-gradient(to bottom, #fc4a1a, #f7b733);
+        margin-bottom: 10px;
+    }
+    
+}
+.commonValueDisplayer{
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+.sunset{
+    background:  #fcdbd1 ;
+}
+.windSpeedClass{
+    position: absolute;
+    bottom: -5px;
+    font-size: 15px;
+    left: 10px;
+}
+.windSpeedHeader{
+    position: absolute;
+    bottom: 15px;
+    left: 23px;
+}
+.percentageValueinSpinner{
+    position: relative;
+    left: 35px;
+    top: -48px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.spinner{
+    width: 100px;
+    height: 100px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    left: 13px;
+    top: 12px;
 }

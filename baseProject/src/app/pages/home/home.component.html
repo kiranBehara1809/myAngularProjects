@@ -26,7 +26,7 @@
                 <span class="fieldValue">{{pinCodeData?.country}}</span>
             </div>
         </div>
-        <mat-accordion  *ngIf="pinCodeData">
+        <mat-accordion *ngIf="pinCodeData">
             <mat-expansion-panel style="background: transparent !important;" *ngFor="let data of pinCodeData?.places">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -51,20 +51,145 @@
                         <span class="fieldValue">{{data?.longitude}}</span>
                     </div>
                     <div class="detailItem pt-2">
-                        <button mat-button  class="noWidthButton" (click)="copyData(data)">copy</button>
-                    <button mat-button class="noWidthButton" (click)="openInMaps(data)">open in Maps</button>
+                        <button mat-button class="noWidthButton" (click)="copyData(data)">copy</button>
+                        <button mat-button class="noWidthButton" (click)="openInMaps(data)">open in Maps</button>
                     </div>
-                    
+
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
-        
+
     </mat-card>
-    <mat-card class="commonCard randomActivityCard">
-        <mat-card-title>Some Random Activities</mat-card-title>
-        {{randomActivity}}
-        <mat-card-actions class="text-end">
-            <i class="fa fa-clone cursorPointer" (click)="copy(randomActivity)" aria-hidden="true"></i>
-        </mat-card-actions>
-    </mat-card>
+    <div >
+        <mat-card class="commonCard randomActivityCard">
+            <mat-card-title>Some Random Activities </mat-card-title>
+            {{randomActivity.length > 41 ? randomActivity.substr(0,38) + '...' : randomActivity}}
+            <mat-card-actions class="text-end">
+                <i class="fa fa-clone cursorPointer" (click)="copy(randomActivity)" aria-hidden="true"></i>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="commonCard weatherCard">
+            <mat-card-title>
+                <div class="weatherHeader">
+                    <span>Weather</span>
+                    <span>
+                        <i class="fa fa-map-marker cursorPointer" matTooltip="Auto Detect" aria-hidden="true"></i>
+                    </span>
+                    <span
+                        style="border-bottom: 1px solid var(--materialComponentColor);caret-color: var(--materialComponentColor);">
+                        <input style="color: var(--materialComponentColor) !important;" matInput type="text"
+                            [(ngModel)]="areaName"  placeholder="Enter Area" autocomplete="off" />
+                    </span>
+                </div>
+            </mat-card-title>
+            <div *ngIf="locationBlocked" class="locationBlocked">
+                <span>
+                    <div class="text-center">
+                        <i class="fa fa-exclamation-triangle fa-4x iconRed" aria-hidden="true"></i>
+                    </div>
+                    <div class="iconRed text-center">Location is denied, please enable it in browser settings to get the
+                        weather
+                        information</div>
+                </span>
+            </div>
+            <div *ngIf="!locationBlocked">
+                <div class="weatherDetails">
+                    <div class="sunPosition sunrise">
+                        <div class="sun"></div>
+                        <div class="text-center">
+                            Sunrise
+                        </div>
+                        <div class="text-center commonValueDisplayer">{{weatherObject?.sunrise}}</div>
+                    </div>
+                    <div class="sunPosition sunset">
+                        <div class="text-center pt-2">
+                            Sunset
+                        </div>
+                        <div class="text-center commonValueDisplayer">{{weatherObject?.sunset}}</div>
+                        <div class="sun"></div>
+                    </div>
+                </div>
+                <div class="weatherDetails">
+                    <div class="thirdRowCard">
+                        <div class="text-center pt-2">
+                            Tempature  <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.temp}} &#8451;
+                        </div>
+                        <div class="text-center pt-2">
+                            Feels Like  <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.feels_like}} &#8451;
+                        </div>
+                    </div>
+                    <div class="thirdRowCard">
+                        <div class="text-center pt-2">
+                            Max Temparature  <i class="fa fa-thermometer-full" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.temp_max}} &#8451;
+                        </div>
+                        <div class="text-center pt-2">
+                            Min Temparature <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.temp_min}} &#8451;
+                        </div>
+                    </div>
+                </div>
+                <div class="weatherDetails">
+                    <div class="sencondRowCard">
+                        <div class="compass">
+                            <div class="arrow"></div>
+                            <div class="disc" id="compassDiscImg"></div>
+                            <div class="text-center pt-2 windSpeedHeader">
+                                Wind Speed
+                            </div>
+                            <div class="text-center commonValueDisplayer windSpeedClass">
+                                {{weatherObject?.windSpeed}}km / hour
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sencondRowCard">
+                        <div class="text-center pt-2">
+                            Pressure <i class="fa fa-info-circle" matTooltip="Min and max values are 950hpa and 1050hpa respectively." aria-hidden="true"></i>
+                        </div>
+                        <mat-progress-spinner class="spinner" [mode]="'determinate'"
+                            [value]="weatherObject?.spinnerValue">
+                        </mat-progress-spinner>
+                        <div class="percentageValueinSpinner">{{weatherObject?.pressure}} hpa</div>
+                    </div>
+                </div>
+                <div class="weatherDetails">
+                    <div class="thirdRowCard">
+                        <div class="text-center pt-2">
+                            Visibility <i class="fa fa-eye" matTooltip="As far as a human eye can see" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.visibility}}m
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.visibility / 1000}}km
+                        </div>
+                    </div>
+                    <div class="thirdRowCard">
+                        <div class="text-center pt-2">
+                            Humidity 
+                        </div>
+                        <div class="text-center commonValueDisplayer">
+                            {{weatherObject?.humidity}}
+                        </div>
+                        <div class="text-center pt-2">
+                            <button mat-button class="noWidthButton" (click)="openWeatherMap('https://zoom.earth/places/india/')">
+                                Open in Maps
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-card>
+    </div>
 </div>
