@@ -60,7 +60,7 @@
         </mat-accordion>
 
     </mat-card>
-    <div >
+    <div>
         <mat-card class="commonCard randomActivityCard">
             <mat-card-title>Some Random Activities </mat-card-title>
             {{randomActivity.length > 41 ? randomActivity.substr(0,38) + '...' : randomActivity}}
@@ -78,7 +78,7 @@
                     <span
                         style="border-bottom: 1px solid var(--materialComponentColor);caret-color: var(--materialComponentColor);">
                         <input style="color: var(--materialComponentColor) !important;" matInput type="text"
-                            [(ngModel)]="areaName"  placeholder="Enter Area" autocomplete="off" />
+                            [(ngModel)]="areaName" placeholder="Enter Area" autocomplete="off" />
                     </span>
                 </div>
             </mat-card-title>
@@ -112,13 +112,13 @@
                 <div class="weatherDetails">
                     <div class="thirdRowCard">
                         <div class="text-center pt-2">
-                            Tempature  <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+                            Tempature <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
                         </div>
                         <div class="text-center commonValueDisplayer">
                             {{weatherObject?.temp}} &#8451;
                         </div>
                         <div class="text-center pt-2">
-                            Feels Like  <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+                            Feels Like <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
                         </div>
                         <div class="text-center commonValueDisplayer">
                             {{weatherObject?.feels_like}} &#8451;
@@ -126,7 +126,7 @@
                     </div>
                     <div class="thirdRowCard">
                         <div class="text-center pt-2">
-                            Max Temparature  <i class="fa fa-thermometer-full" aria-hidden="true"></i>
+                            Max Temparature <i class="fa fa-thermometer-full" aria-hidden="true"></i>
                         </div>
                         <div class="text-center commonValueDisplayer">
                             {{weatherObject?.temp_max}} &#8451;
@@ -154,7 +154,9 @@
                     </div>
                     <div class="sencondRowCard">
                         <div class="text-center pt-2">
-                            Pressure <i class="fa fa-info-circle" matTooltip="Min and max values are 950hpa and 1050hpa respectively." aria-hidden="true"></i>
+                            Pressure <i class="fa fa-info-circle"
+                                matTooltip="Min and max values are 950hpa and 1050hpa respectively."
+                                aria-hidden="true"></i>
                         </div>
                         <mat-progress-spinner class="spinner" [mode]="'determinate'"
                             [value]="weatherObject?.spinnerValue">
@@ -165,7 +167,8 @@
                 <div class="weatherDetails">
                     <div class="thirdRowCard">
                         <div class="text-center pt-2">
-                            Visibility <i class="fa fa-eye" matTooltip="As far as a human eye can see" aria-hidden="true"></i>
+                            Visibility <i class="fa fa-eye" matTooltip="As far as a human eye can see"
+                                aria-hidden="true"></i>
                         </div>
                         <div class="text-center commonValueDisplayer">
                             {{weatherObject?.visibility}}m
@@ -176,20 +179,213 @@
                     </div>
                     <div class="thirdRowCard">
                         <div class="text-center pt-2">
-                            Humidity 
+                            Humidity
                         </div>
                         <div class="text-center commonValueDisplayer">
                             {{weatherObject?.humidity}}
                         </div>
                         <div class="text-center pt-2">
-                            <button mat-button class="noWidthButton" (click)="openWeatherMap('https://zoom.earth/places/india/')">
+                            <button mat-button class="noWidthButton"
+                                (click)="openWeatherMap('https://zoom.earth/places/india/')">
                                 Open in Maps
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </mat-card>
+    </div>
+    <div>
+        <mat-card class="commonCard currencyCard">
+            <mat-card-title>Currency Converter</mat-card-title>
+            <form [formGroup]="currencyConverterForm">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="w-100">
+                            <mat-label>From</mat-label>
+                            <mat-select formControlName="fromCountry">
+                                <mat-option *ngFor="let country of countryCurrencies" [value]="country?.currencies?.[0]?.code">
+                                    {{country.name}} ({{country?.currencies?.[0]?.code}}
+                                    <span>
+                                        {{country?.currencies?.[0]?.symbol}}</span>
+                                    )
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>{{getFormFieldError(currencyConverterForm,'fromCountry')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field class="w-100">
+                            <mat-label>To</mat-label>
+                            <mat-select formControlName="toCountry">
+                                <mat-option *ngFor="let country of countryCurrencies" [value]="country?.currencies?.[0]?.code">
+                                    {{country.name}} ({{country?.currencies?.[0]?.code}}
+                                    <span>
+                                        {{country?.currencies?.[0]?.symbol}}</span>
+                                    )
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>{{getFormFieldError(currencyConverterForm,'toCountry')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="amounts">
+                    <mat-form-field>
+                        <mat-label>Amount</mat-label>
+                        <input formControlName="amount" matInput type="text" placeholder="Amount" autocomplete="off">
+                        <mat-error>{{getFormFieldError(currencyConverterForm,'amount')}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Converted Amount</mat-label>
+                        <input formControlName="convertedAmount" matInput type="text" placeholder="Converted Amount"
+                            autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </form>
+            <mat-card-actions class="text-center">
+                <button mat-button class="noWidthButton" [disabled]="!currencyConverterForm.valid"
+                    (click)="reverse()">
+                    <i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i>
+                </button>
+                <button mat-button class="noWidthButton" [disabled]="!currencyConverterForm.valid"
+                    (click)="convert()">Convert</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="commonCard covidCard">
+            <mat-card-title>Download Vaccination Certificate</mat-card-title>
+            To download an covid vaccination certificate, mobile number, OTP and  beneficiary reference id are required.
+            FYI : No data will be saved, I(Kiran) used an Government API for this process.
+            
+            <mat-card-actions class="text-center">
+                <i class="fa fa-download fa-2x cursorPointer" (click)="openCovidPopup()" aria-hidden="true"></i>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 
+
+    <div>
+        <mat-card class="commonCard countryInfoCard">
+            <mat-card-title>Country Information</mat-card-title>
+            <mat-form-field class="w-100">
+                <mat-label>Country</mat-label>
+                <mat-select (selectionChange)="onSelectCountry($event)">
+                    <mat-option *ngFor="let country of countires" [value]="country?.uuid">
+                        <span style="display: flex;justify-content: space-between;align-items: center;">
+                            <span>
+                                {{country?.name?.length > 35 ? country?.name?.substr(0,35) + '...' : country?.name}}
+                            </span>
+                            <img src="{{country?.flag}}" height="20" width="40"/>
+                        </span>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="countryObject !=null">
+                <p class="countryFlagName">
+                    <span style="width: 80px;padding-right: 5px;">
+                        <img src="{{countryObject?.flag}}" height="40" width="60"/>
+                    </span>
+                    <span class="countryHeading">
+                        {{countryObject?.name}}
+                    </span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Native Name</span>
+                    <span class="cValue">{{countryObject?.nativeName}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Capital</span>
+                    <span class="cValue">{{countryObject?.capital}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Region</span>
+                    <span class="cValue">{{countryObject?.region}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Sub Region</span>
+                    <span class="cValue">{{countryObject?.subregion}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Population</span>
+                    <span class="cValue">{{countryObject?.population}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Area</span>
+                    <span class="cValue">{{countryObject?.area}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Calling Code</span>
+                    <span class="cValue">{{countryObject?.callingCodes?.join()}}</span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Borders</span>
+                    <span class="cValue">
+                        {{getBorders(countryObject?.borders)}}
+                        <i class="fa fa-chevron-circle-down" aria-hidden="true" (click)="showBorders(countryObject?.borders)"></i>
+                    </span>
+                </p>
+                <p class="countryValues">
+                    <span class="cLabel">Languages</span>
+                    <span class="cValue">
+                        {{getLanguages(countryObject?.languages)}}
+                        <!-- <i class="fa fa-chevron-circle-down" aria-hidden="true"></i> -->
+                    </span>
+                </p>
+            </div>
         </mat-card>
     </div>
 </div>
+
+<ng-template #covidPopup>
+    <map-dialog-header [headerData]="matDialogHeader"></map-dialog-header>
+    <div mat-dialog-content>
+        <form [formGroup]="covidForm">
+            <div class="covidFields">
+                <mat-form-field>
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput placeholder="Mobile Number" formControlName="mobileNumber" autocomplete="off">
+                    <mat-error>{{getFormFieldError(covidForm,'mobileNumber')}}</mat-error>
+                </mat-form-field>
+                <button mat-button class="noWidthButton" (click)="sendOtp(3)"
+                [disabled]="covidForm?.value?.mobileNumber?.length != 10 || waitingForOtp">{{sendOtpText}}</button>
+            </div>
+            <div class="covidFields">
+                <mat-form-field>
+                    <mat-label>OTP</mat-label>
+                    <input matInput type="text" placeholder="OTP" formControlName="otp" autocomplete="off">
+                    <mat-error>{{getFormFieldError(covidForm,'otp')}}</mat-error>
+                </mat-form-field>
+                <button mat-button class="noWidthButton" [disabled]="covidForm?.value?.otp?.length != 6 || txnId === null" (click)="confirmOtp()">Confirm OTP</button>
+            </div>
+            <div class="covidFields">
+                <mat-form-field>
+                    <mat-label>Beneficiary Reference Id</mat-label>
+                    <input matInput type="text" placeholder="OTP" formControlName="beneficiary_reference_id" autocomplete="off">
+                    <mat-error>{{getFormFieldError(covidForm,'beneficiary_reference_id')}}</mat-error>
+                </mat-form-field>
+                <button mat-button class="noWidthButton" [disabled]="covidForm.value.beneficiary_reference_id == null || token === null" (click)="downloadVaccination()">Download</button>
+            </div>
+        </form>
+    </div>
+    <b>Note : </b><br/>
+        <span style="color : red; font-weight : 500">Beneficiary Not Registered</span>, this kind of an error generally means the mobile number you have entered does not have linked with coWIN. Enter the mobile number you gave while taking vaccination.
+    <!-- <div mat-dialog-actions class="alignBottom">
+        <button mat-button  [disabled]="!covidForm.valid" class="fullButton" >Proceed</button>
+    </div> -->
+</ng-template>
+<!-- https://documenter.getpostman.com/view/1134062/T1LJjU52#2cc72872-d2eb-4811-b6db-1e325b9f0ca0 -->
+
+
+<ng-template #borders>
+    <p class="optionColor">{{countryObject?.name}}'s border sharing countries</p>
+    <mat-list *ngIf="borderNames.length > 0">
+        <mat-list-item class="optionColor" *ngFor="let obj of borderNames">
+            {{obj?.name}}
+            <span class="example-spacer"></span>
+            <img src="{{obj?.flag}}" height="20" width="40"/>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    <span *ngIf="borderNames.length === 0" class="optionColor">
+        No neighbouring countires are there for  {{countryObject?.name}}, it might be an island
+    </span>
+</ng-template>

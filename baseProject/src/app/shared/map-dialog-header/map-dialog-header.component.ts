@@ -54,7 +54,9 @@ export class MapDialogHeaderComponent implements OnInit {
 
   closeModal(){
     const dialog = this.dialog.getDialogById(`${this.headerData?.id}`)
-    dialog?.close()
+    if(dialog){
+      dialog.close()
+    }
   }
 
 

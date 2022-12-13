@@ -93,6 +93,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   padding: 15px !important;
   max-width: 350px !important;
   overflow: hidden;
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+  }
 }
 
 .snackToaster_error {
@@ -102,6 +105,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   padding: 15px !important;
   max-width: 350px !important;
   overflow: hidden;
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+  }
 }
 
 .snackToaster_info {
@@ -111,6 +117,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   padding: 15px !important;
   max-width: 350px !important;
   overflow: hidden;
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+  }
 }
 
 .snackToaster_warn {
@@ -120,6 +129,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   padding: 15px !important;
   max-width: 350px !important;
   overflow: hidden;
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+  }
 }
 
 .mat-simple-snackbar-action {

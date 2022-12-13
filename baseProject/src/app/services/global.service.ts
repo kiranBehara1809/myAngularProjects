@@ -72,4 +72,17 @@ export class GlobalService {
   commonGet(url: string) {
     return this.http.get(url)
   }
+  commonPost(url: string, payload:any) {
+    return this.http.post(url, payload)
+  }
+  covidCertificateDownload(url:string, token:string){
+    const headers = new HttpHeaders({
+      "accept": 'application/pdf',
+      "Content-Type": 'application/pdf',
+      "Authorization": "Bearer "+token
+    });
+    return this.http.get(url, {headers, observe : 'body', responseType : 'arraybuffer'})
+  }
+
+  
 }

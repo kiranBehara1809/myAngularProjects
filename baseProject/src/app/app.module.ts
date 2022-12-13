@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SnackbaComponent } from './commonComponents/snackba/snackba.component';
 import { RemindersListingComponent } from './commonComponents/reminders-listing/reminders-listing.component';
 import { SharedModule } from './shared/shared.module';
+import { NumericOnlyDirective } from './directives/numeric-only.directive';
 
 
 
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     FooterDockComponent,
     MapReminderComponent,
     SnackbaComponent,
-    RemindersListingComponent
+    RemindersListingComponent,
+    NumericOnlyDirective,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,9 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule
+  ],
+  exports : [
+    NumericOnlyDirective,
   ],
   providers: [DatePipe, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

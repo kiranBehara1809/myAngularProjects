@@ -309,4 +309,8 @@ export class CommonService {
     return `${localeDate.getHours()-12}:${localeDate.getMinutes()} ${amPm}`
   }
 
+  getPlaceTime(){
+    const localeDate = (new Date("2022-12-12T07:41:22.699093+02:00").toLocaleString("en-US", {timeZone: "EET"}));
+  }
+
 }
