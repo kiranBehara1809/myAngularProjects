@@ -12,7 +12,6 @@ export class SnackbaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
   }
   close(){
     this._snackRef.dismiss()

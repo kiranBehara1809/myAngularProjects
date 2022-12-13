@@ -9,7 +9,7 @@ import { CommonService } from '../common.service';
   styleUrls: ['./footer-dock.component.scss']
 })
 export class FooterDockComponent implements OnInit {
-  footerDockList: string[] = ['calculator.png', 'settings.png',   'covidDashboard.png', 'nasa.png', 'railway.png', 'kanbanLogin.png']
+  footerDockList: string[] = ['home.png', 'settings.png',   'covidDashboard.png', 'nasa.png', 'railway.png', 'kanbanLogin.png']
   // 'reminders.png' 'calendar.png', 'weather.png',
   hoverClass: string = ''
   @ViewChild('rightClickMenu') rightClickMenu: MatMenuTrigger | undefined

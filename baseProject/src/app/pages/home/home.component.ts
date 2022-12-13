@@ -96,6 +96,9 @@ export class HomeComponent implements OnInit {
     // window.open(`https://maps.google.com/?q=${data?.latitude},${data.longitude}`)
     window.open(`https://maps.google.com/?q=${data?.placename},${data.state}`)
   }
+  countryMap(placename:string){
+    window.open(`https://maps.google.com/?q=${placename}`)
+  }
   copyData(data: any) {
     let window: any = this.window;
     const obj = {
@@ -130,7 +133,6 @@ export class HomeComponent implements OnInit {
     this.getWeatherInfo()
     this.globalService.commonGet(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=UTC&date=${this.datePipe.transform(new Date(), 'yyyy-MM-dd')}`).subscribe((data: any) => {
       if (data) {
-        console.log(data?.results?.sunrise?.split(":"))
         let utcSunrise = data?.results?.sunrise?.split(":")
         let utcSunset = data?.results?.sunset?.split(":")
         let sunrise = this.commonService.getSunriseAndSunsetTime(utcSunrise[0], utcSunrise[1], 0, 'AM')
@@ -389,4 +391,7 @@ export class HomeComponent implements OnInit {
     this.borderNames = bcN || []
     this.bottomSheet.open(this.borders)
   }
+  // openResume(){
+  //   this.window.open('../../../assets/mine/kiranResume0911.doc')
+  // }
 }
