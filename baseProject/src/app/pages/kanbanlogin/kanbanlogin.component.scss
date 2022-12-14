@@ -12,7 +12,7 @@
 }
 .loginCard{
     width: 30vw;
-    background: transparent;
+    background: rgba(255,255,255, var(--transparencyVariable)) !important;
     height: auto;
     border : 4px solid var(--materialComponentColor);
     border-bottom:  none;

@@ -2,7 +2,7 @@
     height: 60px;
     width: 500px;
     border-radius: 20px;
-    background: rgba( 255, 255, 255, 0.25 );
+    background: rgba(255,255,255, var(--transparencyVariable)) !important;
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     padding: 5px 15px;

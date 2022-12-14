@@ -24,7 +24,7 @@
 .commonPopover{
     width: 300px;
     height: auto;
-    background: rgba( 255, 255, 255, 0.25 );
+    background: rgba(255,255,255, var(--transparencyVariable)) !important;
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     padding: 10px 5px;
@@ -32,7 +32,7 @@
 .settings{
     font-size: 18px;
     cursor: pointer;
-    padding: 0 15px 0 15px;
+    padding: 0 10px 0 10px;
 }
 .settingCard{
     height: auto;

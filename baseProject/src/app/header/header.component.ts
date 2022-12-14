@@ -20,7 +20,10 @@ export class HeaderComponent implements OnInit {
   batteryObject: any = null;
   selectedDateFromCalendar = new Date()
   defaultBrightness: any = 10
+  defaultTransparencyLevel: any = 4;
   matDialogHeader: MAT_DIALOG_HEADER | undefined
+  fullScreenFlag=false;
+  showFullScreenIcon= true
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
 
   constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private route: Router, private window: Window) { }
@@ -35,8 +38,10 @@ export class HeaderComponent implements OnInit {
       let mobile = window.matchMedia("(max-width: 600px)")
       let tablet = window.matchMedia("(max-width: 900px)")
       if(mobile.matches || tablet.matches){
+        this.showFullScreenIcon = false
         this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'hh:mm')
       }else{
+        this.showFullScreenIcon = true
         this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'MMM dd  hh:mm:ss')
       }
     }, 1000)
@@ -46,6 +51,29 @@ export class HeaderComponent implements OnInit {
     this.getCurrentLocation()
   }
 
+  fullScreenMode(){
+      let elem = document.getElementById("xyz") as any;
+      if(this.fullScreenFlag){
+        let document:any = window.document;
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+          document.msExitFullscreen();
+        }
+        this.fullScreenFlag = false;
+        return
+      }
+      if (elem?.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem?.webkitRequestFullscreen) { /* Safari */
+        elem?.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem?.msRequestFullscreen();
+      }
+      this.fullScreenFlag = true;
+  }
   getCurrentLocation() {
     this.commonService.getCurrentLocation(false);
   }
@@ -64,6 +92,21 @@ export class HeaderComponent implements OnInit {
     }
     let root = document.documentElement;
     root.style.setProperty('--brightnessVariable', `${brigntessVar}`);
+  }
+  onChangeTransparency(event: MatSliderChange){
+    let transparencyVar = 0.2
+    if (event.value === 0 || event.value === 1) {
+      this.defaultTransparencyLevel = 0.2
+      transparencyVar = 0.2
+    } else if (event.value === 10) {
+      this.defaultTransparencyLevel = 10
+      transparencyVar = 1
+    } else {
+      transparencyVar = +("0." + event.value)
+      this.defaultTransparencyLevel = event.value
+    }
+    let root = document.documentElement;
+    root.style.setProperty('--transparencyVariable', `${transparencyVar}`);
   }
 
   openWelcomeNoteModal() {

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
     --brightnessVariable : 1;
+    --transparencyVariable : 0.4;
     --macOsBlue : #007ccf ;
     --infoBgColor : rgb(214, 228, 238) ;
     --warnBgColor : rgb(238, 232, 214) ;
@@ -20,7 +21,7 @@
 html, body { height: 100%;  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: black; }
 .mat-menu-panel{
-    background: rgba( 255, 255, 255, 0.25 );
+    background: rgba(255,255,255, var(--transparencyVariable)) !important;
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     max-width: 500px !important;
@@ -263,7 +264,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
  
 }
 .mat-bottom-sheet-container{
-  background: rgba( 255, 255, 255, 0.25 );
+    background: rgba(255,255,255, var(--transparencyVariable)) !important;
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     max-width: 500px !important;
