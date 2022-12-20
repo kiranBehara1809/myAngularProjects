@@ -14,6 +14,7 @@ import { KanbanloginComponent } from './kanbanlogin/kanbanlogin.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { ExcelComponent } from './excel/excel.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     WeatherComponent,
     KanbanloginComponent,
     KanbanComponent,
-    HomeComponent
+    HomeComponent,
+    ExcelComponent
   ],
   imports: [
     CommonModule,

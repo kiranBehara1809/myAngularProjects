@@ -278,3 +278,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 .padLeft20{
   padding-left: 20px !important;
 }
+tr.mat-header-row{
+  height: 30px !important;
+  background: var(--materialComponentColor);
+  border-top-left-radius: 10px;
+}
+.mat-table thead tr.mat-header-row th:first-child{
+  border-top-left-radius: 10px !important;
+}
+.mat-table thead tr.mat-header-row th:last-child{
+  border-top-right-radius: 10px !important;
+}

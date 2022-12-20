@@ -76,7 +76,6 @@ export class SettingsComponent implements OnInit {
       this.batteryObject = res
      })
      this.systemInformation = this.commonService.getSystemInformation();
-     console.log(this.systemInformation)
   }
   onClickSetting(item:any){
     this.selectedObject = null;

@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  currentDateTime: any
+  currentDateTime: any;
+  systemInformation: any;
   _gc = GlobalConstants
   batteryObject: any = null;
   selectedDateFromCalendar = new Date()
@@ -26,7 +27,10 @@ export class HeaderComponent implements OnInit {
   showFullScreenIcon= true
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
 
-  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private route: Router, private window: Window) { }
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private route: Router, private window: Window) {
+    this.systemInformation = this.commonService.getSystemInformation();
+
+   }
 
   ngOnInit(): void {
     this.commonService.getBatteryDetails().then(res => {

@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background: transparent;
+}
+.labels{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    i{
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 10px;
+        background: var(--materialComponentColor) !important;
+        cursor: pointer;
+        color: var(--white);
+    }
+}     
+.th{
+    font-weight: 500;
+    font-size: 14px !important;
+    color: var(--white);
+}  
+.addDataClass{
+    color: var(--macOsBlue);
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CovidComponent } from './covid/covid.component';
+import { ExcelComponent } from './excel/excel.component';
 import { HomeComponent } from './home/home.component';
 import { ImdbComponent } from './imdb/imdb.component';
 import { KanbanComponent } from './kanban/kanban.component';
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomeComponent
+  },
+  {
+    path : 'excel',
+    component : ExcelComponent
   }
 ];
 
