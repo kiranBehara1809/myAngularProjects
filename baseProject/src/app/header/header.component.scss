@@ -1,15 +1,9 @@
 .header{
-    height: auto !important;
-    background: rgb(255 255 255 / 45%);
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
+    height: 40px !important;
     padding: 5px 10px;
-    position: fixed;
     width: 100%;
 }
-.example-spacer{
-    flex: 1 1 auto;
-}
+
 .logoSize{
     font-size: 1.5em;
     cursor: pointer;
@@ -24,9 +18,6 @@
 .commonPopover{
     width: 300px;
     height: auto;
-    background: rgba(255,255,255, var(--transparencyVariable)) !important;
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
     padding: 10px 5px;
 }
 .settings{
@@ -39,9 +30,6 @@
     margin: 5px 12px;
     padding: 7px;
     border-radius: 10px;
-    background: rgba(250, 248, 248, 0.25);
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
 }
 .settingNameHeading{
     display: flex;

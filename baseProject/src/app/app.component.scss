@@ -31,3 +31,16 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+
+
+// ---- NEW UI ------
+.sideNavContainer{
+  width: 250px;
+  // height: 100%;
+}
+.mainContent{
+  height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 5px;
+}

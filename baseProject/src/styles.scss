@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/theming";
+
 :root{
     --brightnessVariable : 1;
     --transparencyVariable : 0.4;
@@ -14,22 +16,16 @@
     --black: black;
     --gray : gray;
     --macOsOrange : #FF605C ;
-    --url : url('../assets/images/wallpaper1.jpg');
+    // --url : url('../assets/images/wallpaper1.jpg');
     --materialComponentColor : #007ccf;
     --windDeg : '0deg';
 }
 html, body { height: 100%;  }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: black; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-menu-panel{
-    background: rgba(255,255,255, var(--transparencyVariable)) !important;
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
     max-width: 500px !important;
 }
 .mat-dialog-container{
-  background: rgb(249 241 241 / 75%);
-  backdrop-filter: blur( 10px );
-  -webkit-backdrop-filter: blur( 10px );
   border-radius: 15px !important;
   max-width: 100vw !important;
   transition: height 5.5s;
@@ -46,8 +42,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   height: 30px !important;
   font-weight: normal !important;
   border-radius: 5px !important;
-  color : var(--white) !important;
-  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .normalButton{
@@ -56,8 +50,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   height: 30px !important;
   font-weight: normal !important;
   border-radius: 5px !important;
-  color : var(--white) !important;
-  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .mediumButton{
@@ -66,8 +58,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   height: 30px !important;
   font-weight: normal !important;
   border-radius: 5px !important;
-  color : var(--white) !important;
-  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .fullButton{
@@ -76,17 +66,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   height: 30px !important;
   font-weight: normal !important;
   border-radius: 5px !important;
-  color : var(--white) !important;
-  background-color: var(--materialComponentColor)  !important;
   line-height: 0 !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-label{
-  color: var(--black);
   font-size: 14px !important;
 }
-.mat-input-element{
-  color: var(--black) !important;
-}
+
 .snackToaster_success {
   border-left: 5px solid var(--sucessBgColor) !important;
   background: var(--macOsGreen) !important;
@@ -138,13 +123,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 .mat-simple-snackbar-action {
   color: var(--black);
 }
+
 .cursorPointer{
   cursor: pointer !important;
 }
 
 .commonLayout{
   padding: 50px 20px 20px 20px;
-  background : rgba(255,255,255, 0.75);
   height: 80vh !important;
 }
 
@@ -213,14 +198,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   color: white;
 }
 .workArea{
-  width: 75%;
   padding: 5px;
-  height: 70vh;
   overflow-x: hidden;
   overflow-y: auto;
   @media screen and (max-width: 600px) {
     width: 100%;
-    height: 45vh;
     margin-top: 10px;
   }
 }
@@ -241,37 +223,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
   font-weight: 600;
 }
 
-.mat-checkbox-checked.mat-accent .mat-checkbox-background{
-  background-color: var(--materialComponentColor);
-}
-.mat-slider.mat-accent .mat-slider-track-fill, .mat-slider.mat-accent .mat-slider-thumb, .mat-slider.mat-accent .mat-slider-thumb-label{
-  background-color: var(--materialComponentColor);
-}
-.mat-calendar-body-selected{
-  background-color: var(--materialComponentColor);
-}
-
-.mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled){
-  background: var(--materialComponentColor) !important;
-  color: var(--white) !important;
-}
 .mat-primary .mat-option{
   height: 35px !important;
 }
-.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
-  background: var(--materialComponentColor) !important;
-  color: var(--white) !important;
- 
-}
 .mat-bottom-sheet-container{
-    background: rgba(255,255,255, var(--transparencyVariable)) !important;
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
     max-width: 500px !important;
 }
-.mat-progress-spinner circle, .mat-spinner circle{
-  stroke:  var(--materialComponentColor) !important;
-}
+
 .ot{
   font-size: 14px;
 }
@@ -280,7 +238,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: blac
 }
 tr.mat-header-row{
   height: 30px !important;
-  background: var(--materialComponentColor);
   border-top-left-radius: 10px;
 }
 .mat-table thead tr.mat-header-row th:first-child{
@@ -288,4 +245,51 @@ tr.mat-header-row{
 }
 .mat-table thead tr.mat-header-row th:last-child{
   border-top-right-radius: 10px !important;
+}
+
+
+
+.leftRightSections{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: calc(100vh - 120px);
+  .leftSide {
+      width: 20%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: 5px 0;
+      border-radius: 15px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset !important;
+      .loopItem{
+          padding: 5px 20px;
+          border-radius: 15px;
+          margin: 5px 0;
+          height: 30px;
+          line-height: 0;
+          box-shadow: none;
+          cursor: pointer;
+      }
+      .loopItem:hover{
+          border-radius: 15px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+      @media screen and (max-width: 600px) {
+          width: 100%;
+          height: 25vh;
+        }
+  }
+  .rightSide{
+      width: 79%;
+      margin: 5px 0;
+      border-radius: 15px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset  !important;
+      @media screen and (max-width: 600px) {
+          width: 100%;
+        }
+  }
+}
+.example-spacer{
+  flex: 1 1 auto;
 }

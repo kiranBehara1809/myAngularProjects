@@ -1,3 +1,5 @@
+
+
 .customColor{
     color: var(--materialComponentColor) !important;
     border:1px solid var(--materialComponentColor) !important;
@@ -22,4 +24,19 @@
     margin-right : 5px;
     line-height: 1.8;
     width: 47px;
+}
+
+
+// ----- NEW UI -----
+
+.theme{
+    width: 150px;
+    height: 50px;
+    margin: 5px 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,0 +1,151 @@
+@use '@angular/material' as mat;
+
+@import "@angular/material/theming";
+@include mat.core();
+
+
+$angular-primary: mat.define-palette(mat.$green-palette, 900);
+$angular-accent: mat.define-palette(mat.$green-palette, 300);
+$angular-warn: mat.define-palette(mat.$red-palette);
+
+// dark mode colours
+$angular-primary-dark : mat.define-palette(mat.$green-palette, 200);
+$angular-accent-dark : mat.define-palette(mat.$green-palette, 900);
+
+
+
+$angular-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+      warn: $angular-warn
+    ),
+  )
+);
+
+@include mat.all-component-themes($angular-default-theme);
+$angular-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $angular-primary-dark,
+      accent: $angular-accent-dark,
+      warn: $angular-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+$special-primary: mat.define-palette(mat.$pink-palette, 700);
+$special-primary-dark: mat.define-palette(mat.$pink-palette, 300);
+$special-accent: mat.define-palette(mat.$blue-palette, 300);
+$special-accent-dark: mat.define-palette(mat.$blue-palette, 700);
+
+//brown theme
+$brown-primary: mat.define-palette(mat.$brown-palette, 700);
+$brown-primary-dark: mat.define-palette(mat.$brown-palette, 300);
+$brown-accent: mat.define-palette(mat.$yellow-palette, 300);
+$brown-accent-dark: mat.define-palette(mat.$yellow-palette, 700);
+
+//teal theme
+$teal-primary: mat.define-palette(mat.$teal-palette, 700);
+$teal-primary-dark: mat.define-palette(mat.$teal-palette, 300);
+$teal-accent: mat.define-palette(mat.$deep-purple-palette, 300);
+$teal-accent-dark: mat.define-palette(mat.$deep-purple-palette, 700);
+
+
+
+
+
+ //pink theme
+ $angular-pink-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $special-primary,
+      accent: $special-accent,
+      warn: $angular-warn
+    ),
+  )
+);
+ $angular-pink-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $special-primary-dark,
+      accent: $special-accent-dark,
+      warn: $angular-warn
+    ),
+  )
+);
+//pink theme
+
+ //brown theme
+ $angular-brown-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $brown-primary,
+      accent: $brown-accent,
+      warn: $angular-warn
+    ),
+  )
+);
+ $angular-brown-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $brown-primary-dark,
+      accent: $brown-accent-dark,
+      warn: $angular-warn
+    ),
+  )
+);
+ //brown theme
+
+
+ //teal theme
+ $angular-teal-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $teal-primary,
+      accent: $teal-accent,
+      warn: $angular-warn
+    ),
+  )
+);
+ $angular-teal-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $teal-primary-dark,
+      accent: $teal-accent-dark,
+      warn: $angular-warn
+    ),
+  )
+);
+ //teal theme
+
+
+.tealTheme {
+  @include mat.all-component-colors($angular-teal-theme);
+}
+.tealTheme-Dark {
+  @include mat.all-component-colors($angular-teal-dark-theme);
+}
+.brownTheme {
+  @include mat.all-component-colors($angular-brown-theme);
+}
+.brownTheme-Dark {
+  @include mat.all-component-colors($angular-brown-dark-theme);
+}
+.pinkTheme {
+  @include mat.all-component-colors($angular-pink-theme);
+}
+.pinkTheme-Dark {
+  @include mat.all-component-colors($angular-pink-dark-theme);
+}
+
+
+.defaultTheme {
+  @include mat.all-component-themes($angular-default-theme);
+}
+.defaultTheme-Dark {
+  @include mat.all-component-colors($angular-dark-theme);
+}

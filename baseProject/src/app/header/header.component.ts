@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostBinding, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlider, MatSliderChange } from '@angular/material/slider';
 import { GlobalConstants } from '../globals/GlobalConstants';
@@ -9,12 +9,17 @@ import { MapReminderComponent } from '../commonComponents/map-reminder/map-remin
 import { GlobalService } from '../services/global.service';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'map-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleSideNav = new EventEmitter();
+  toggleControl = new FormControl(false);
+  @HostBinding('class') className = '';
   currentDateTime: any;
   systemInformation: any;
   _gc = GlobalConstants
@@ -23,14 +28,14 @@ export class HeaderComponent implements OnInit {
   defaultBrightness: any = 10
   defaultTransparencyLevel: any = 4;
   matDialogHeader: MAT_DIALOG_HEADER | undefined
-  fullScreenFlag=false;
-  showFullScreenIcon= true
+  fullScreenFlag = false;
+  showFullScreenIcon = true
   @ViewChild('welcomeNote') welcomeNote: TemplateRef<any> | undefined;
 
-  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private commonService: CommonService, private route: Router, private window: Window) {
+  constructor(private datePipe: DatePipe, private dialog: MatDialog, private globalService: GlobalService, private overlay: OverlayContainer, private commonService: CommonService, private route: Router, private window: Window) {
     this.systemInformation = this.commonService.getSystemInformation();
 
-   }
+  }
 
   ngOnInit(): void {
     this.commonService.getBatteryDetails().then(res => {
@@ -41,10 +46,10 @@ export class HeaderComponent implements OnInit {
     setInterval(() => {
       let mobile = window.matchMedia("(max-width: 600px)")
       let tablet = window.matchMedia("(max-width: 900px)")
-      if(mobile.matches || tablet.matches){
+      if (mobile.matches || tablet.matches) {
         this.showFullScreenIcon = false
         this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'hh:mm')
-      }else{
+      } else {
         this.showFullScreenIcon = true
         this.currentDateTime = day + " " + this.datePipe.transform(new Date(), 'MMM dd  hh:mm:ss')
       }
@@ -52,31 +57,51 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.openWelcomeNoteModal()
     }, 200);
-    this.getCurrentLocation()
+    this.getCurrentLocation();
+    this.setDarkMode()
+    
   }
 
-  fullScreenMode(){
-      let elem = document.getElementById("xyz") as any;
-      if(this.fullScreenFlag){
-        let document:any = window.document;
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-          document.msExitFullscreen();
-        }
-        this.fullScreenFlag = false;
-        return
+  setDarkMode(){
+    this.toggleControl.valueChanges.subscribe((darkMode) => {
+      const concatValue = 'Dark';
+      const theme = document.body.classList[1]
+      const darkClassName = `${theme}-${concatValue}`
+      if (darkMode)
+        document.body.className = `mat-typography ${darkClassName}`
+      else
+         document.body.className = `mat-typography ${theme.split('-')[0]}`
+
+      if (darkMode) {
+        this.overlay.getContainerElement().className = `cdk-overlay-container ${darkClassName}`
+      } else {
+        this.overlay.getContainerElement().className = `cdk-overlay-container ${theme.split('-')[0]}`
       }
-      if (elem?.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem?.webkitRequestFullscreen) { /* Safari */
-        elem?.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem?.msRequestFullscreen();
+    });
+  }
+
+  fullScreenMode() {
+    let elem = document.getElementById("xyz") as any;
+    if (this.fullScreenFlag) {
+      let document: any = window.document;
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
       }
-      this.fullScreenFlag = true;
+      this.fullScreenFlag = false;
+      return
+    }
+    if (elem?.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem?.webkitRequestFullscreen) { /* Safari */
+      elem?.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem?.msRequestFullscreen();
+    }
+    this.fullScreenFlag = true;
   }
   getCurrentLocation() {
     this.commonService.getCurrentLocation(false);
@@ -97,7 +122,7 @@ export class HeaderComponent implements OnInit {
     let root = document.documentElement;
     root.style.setProperty('--brightnessVariable', `${brigntessVar}`);
   }
-  onChangeTransparency(event: MatSliderChange){
+  onChangeTransparency(event: MatSliderChange) {
     let transparencyVar = 0.2
     if (event.value === 0 || event.value === 1) {
       this.defaultTransparencyLevel = 0.2
@@ -159,7 +184,7 @@ export class HeaderComponent implements OnInit {
   openSettings() {
     this.route.navigateByUrl(`pages/settings`)
   }
-  goHome(){
+  goHome() {
     this.route.navigateByUrl(`pages/home`)
   }
   getBgColor() {
@@ -168,5 +193,8 @@ export class HeaderComponent implements OnInit {
       'background-color': batteryLevel <= 25 ? 'red' : (batteryLevel <= 80 ? 'orange' : 'green'),
       'color': (batteryLevel <= 25 || batteryLevel >= 80) ? 'white' : 'black'
     }
+  }
+  toggleSideNavContainer() {
+    this.toggleSideNav.emit(true);
   }
 }

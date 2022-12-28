@@ -1,4 +1,4 @@
-<div class="contentMAP" id="xyz">
+<!-- <div class="contentMAP" id="xyz">
   <map-header fxLayout="column"></map-header>
 
   <div fxLayout="row" fxFlex="100" class="router" id="foo">
@@ -9,4 +9,21 @@
   <div class="dock">
     <map-footer-dock fxLayout="column"></map-footer-dock>
   </div>
-</div>
+</div> -->
+
+
+
+
+<mat-sidenav-container class="example-container" id="xyz">
+  <mat-sidenav #sidenav [mode]="sideNavMode" class="sideNavContainer">
+    Sidenav content
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <map-header fxLayout="column" (toggleSideNav)="sidenav.toggle()"></map-header>
+    <div class="mainContent">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-sidenav-content>
+</mat-sidenav-container>
